@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/yahoo-api-test/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/yahoo-api-test/static/js/main.06c66ba2.chunk.js",
+    "main.js.map": "/yahoo-api-test/static/js/main.06c66ba2.chunk.js.map",
+    "runtime-main.js": "/yahoo-api-test/static/js/runtime-main.7af3078c.js",
+    "runtime-main.js.map": "/yahoo-api-test/static/js/runtime-main.7af3078c.js.map",
+    "static/js/2.69d60eda.chunk.js": "/yahoo-api-test/static/js/2.69d60eda.chunk.js",
+    "static/js/2.69d60eda.chunk.js.map": "/yahoo-api-test/static/js/2.69d60eda.chunk.js.map",
+    "static/js/3.82270925.chunk.js": "/yahoo-api-test/static/js/3.82270925.chunk.js",
+    "static/js/3.82270925.chunk.js.map": "/yahoo-api-test/static/js/3.82270925.chunk.js.map",
+    "index.html": "/yahoo-api-test/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/yahoo-api-test/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.69d60eda.chunk.js.LICENSE.txt": "/yahoo-api-test/static/js/2.69d60eda.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7af3078c.js",
+    "static/js/2.69d60eda.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.06c66ba2.chunk.js"
+  ]
+}
