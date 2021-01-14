@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react'
 import BackEndSetup from './Helper/BackEndSetup'
 import Footer from './Components/footer'
-import NavBar from './Components/navBar'
+import Header from './Components/Header'
 import MainContainer from './Containers/MainContainer'
 
 
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <>
         <BackEndSetup />
-        <NavBar />
+        <Header />
         <MainContainer />
         <Footer />
       </>

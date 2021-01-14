@@ -7,7 +7,8 @@ class BackEndSetup extends React.Component {
     response: {}
   }
 
-  
+
+
   componentDidMount() {
     // this.nbaStatsAPIFetch()
   }
@@ -33,7 +34,8 @@ class BackEndSetup extends React.Component {
     })
       .then(resp => resp.json())
       .then(response => {
-        console.log(response);
+        console.log(response)
+        //function here that makes a POST request to my API so that I can calculate 
       })
       .catch(err => {
         console.error(err);
@@ -41,10 +43,39 @@ class BackEndSetup extends React.Component {
   }
 
 
+  clickHandler = (e) => {
+    const option = e.target.name
+    console.log('option: ', option)
+    switch(option) {
+      case "games":
+        console.log('games has been clicked')
+        break
+      case "players":
+        console.log('players has been clicked')
+        break
+      case "player-games":
+        console.log('player-games has been clicked')
+        break
+      case "team-games":
+        console.log('team-games has been clicked')
+        break
+      case "teams":
+        console.log('teams has been clicked')
+        break
+      default:
+        return
+    }
+
+  }
+
   render() {
-    return(
+    return (
       <>
-      Hey there
+        <button name="games" onClick={this.clickHandler}>Update Games</button>
+        <button name="players" onClick={this.clickHandler}>Update Players</button>
+        <button name="player-games" onClick={this.clickHandler}>Update Player Games</button>
+        <button name="team-games" onClick={this.clickHandler}>Update NBA Team Games</button>
+        <button name="teams" onClick={this.clickHandler}>Update NBA Teams</button>
       </>
     )
   }
