@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 class PlayerRankerChart extends React.Component {
+
 
   render() {
     return (
@@ -12,5 +14,11 @@ class PlayerRankerChart extends React.Component {
 
 }
 
+function msp(state) {
+  return {
+    playerData: state.playerData,
+    playerAverages: state.playerAverages
+  }
+}
 
-export default PlayerRankerChart
+export default connect(msp)(PlayerRankerChart)

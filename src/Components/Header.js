@@ -1,53 +1,48 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import Button from '@material-ui/core/Button'
-import { Home } from '@material-ui/icons'
+import { connect } from 'react-redux'
+import { setPlayers } from '../Redux/actions'
 
 
-// const navLinks = [
-//   { title: 'Trade Analyzer', path: '/tradeAnalyzer' },
-//   { title: 'Player Ranker', path: '/playerRanker' }
-// ]
+class Header extends React.Component {
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+  componentDidMount() {
+    fetch('http://localhost:3000/players')
+      .then(resp => resp.json())
+      .then(players => {
+        this.props.dispatchSetPlayers(players)
+      })
   }
-}))
 
-
-function Header() {
-  const classes = useStyles()
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <NavLink to="/NBAnalyst">
-            <Home />
+  render() {
+    return (
+      <div>
+        <ul>
+          <NavLink to="/NBAnalyst/playerRanker">
+            <li>Player Ranker</li>
           </NavLink>
           <NavLink to="/NBAnalyst/tradeAnalyzer">
-            <Typography variant="h6" className={classes.title}>Trade Analyzer</Typography>
+            <li>Trade Analyzer</li>
           </NavLink>
-          <NavLink to="/NBAnalyst/playerRanker">
-            <Button color="inherit" className={classes.menuButton}>Player Ranker</Button>
+          <NavLink to="/NBAnalyst/playerStats">
+            <li>Player Stats</li>
           </NavLink>
-        </Toolbar>
-      </AppBar>
-    </div>
-  )
+        </ul>
+      </div>
+    )
+  }
 }
 
+function msp(state) {
+  return {
+    playerAverages: state.playerAverages
+  }
+}
 
-export default Header
+function mdp(dispatch) {
+  return {
+    dispatchSetPlayers: (players) => dispatch(setPlayers(players)),
+  }
+}
+
+export default connect(msp, mdp)(Header)

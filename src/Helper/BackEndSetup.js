@@ -3,26 +3,7 @@ import React from 'react'
 
 class BackEndSetup extends React.Component {
 
-  state = {
-    response: {}
-  }
-
-
-
-  componentDidMount() {
-    // this.nbaStatsAPIFetch()
-  }
-
-
-  fetchUserLeagueData = (props) => {
-    //this function will fetch all user data stored in the rails back end
-  }
-
-
-  fetchYahooLeagueData = (props) => {
-    //this function will access the yahoo database and pull all remote info for user's league
-  }
-
+  //Remote API Fetches
 
   nbaStatsAPIFetch = () => {
     fetch("https://api-nba-v1.p.rapidapi.com/statistics/players/playerId/1", {
@@ -40,6 +21,57 @@ class BackEndSetup extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  getRemoteTeamsFetch = () => {
+    fetch("https://api-nba-v1.p.rapidapi.com/teams/league/standard", {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "e8f286527fmsh396120bc897d327p143df6jsn08ab7ca95a38",
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com"
+      }
+    })
+      .then(resp => resp.json())
+      .then(response => {
+        console.log(response)
+        let nbaTeams = this.teamControl(response)
+        // for (const team of nbaTeams) {
+        //   this.postLocalTeamsFetch(team)
+        // }
+        this.postLocalTeamsFetch(nbaTeams[0])
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  postLocalTeamsFetch = (team) => {
+    
+    const teamObj = {
+      api_id: parseInt(team.teamId),
+      name: team.fullName,
+      abrev: team.shortName,
+      logo_url: team.logo,
+    }
+
+    fetch("http://localhost:3000/nba_teams", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(teamObj)
+    })
+    .then(response => response.json())
+    .then(data => {console.log('success')})
+  }
+
+
+  //Local API POST control functions
+
+  teamControl = (apiResponse) => {
+    //need the team.teamId because Stephen A Smith's allstar team shows up as an NBA franchise
+    let nbaTeams = apiResponse.api.teams.filter(team => team.nbaFranchise === "1" && team.teamId !== "37")
+    return nbaTeams
   }
 
 
@@ -60,7 +92,7 @@ class BackEndSetup extends React.Component {
         console.log('team-games has been clicked')
         break
       case "teams":
-        console.log('teams has been clicked')
+        this.getRemoteTeamsFetch()
         break
       default:
         return
