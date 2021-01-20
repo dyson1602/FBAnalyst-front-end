@@ -2,14 +2,14 @@ import { combineReducers } from 'redux'
 
 import {
   SET_PLAYERS,
-  FANTASY_SCORE,
+  FANTASY_VALUE,
   AVERAGES
 } from './actionTypes'
 
 const state = {
   playerData: [],
   playerAverages: [],
-  fantasyScores: []
+  fantasyValues: []
 }
 
 function playerDataReducer(prevState = state.playerData, action) {
@@ -21,9 +21,9 @@ function playerDataReducer(prevState = state.playerData, action) {
   }
 }
 
-function fantasyScoresReducer(prevState = state.fantasyScores, action) {
+function fantasyValuesReducer(prevState = state.fantasyValues, action) {
   switch (action.type) {
-    case FANTASY_SCORE:
+    case FANTASY_VALUE:
       return action.payload
     default:
       return prevState
@@ -41,8 +41,8 @@ function playerAveragesReducer(prevState = state.playerAverages, action) {
 
 const rootReducer = combineReducers({
   playerData: playerDataReducer,
-  fantasyScores: fantasyScoresReducer,
-  playerAverages: playerAveragesReducer
+  playerAverages: playerAveragesReducer,
+  fantasyValues: fantasyValuesReducer,
 })
 
 export default rootReducer

@@ -1,12 +1,12 @@
 import { computeLeagueAverage } from './computeLeagueAverage'
 
-export function computeFantasyValue(players) {
+export function computeFantasyValue(playerAverages) {
 
   let leagueAverages = computeLeagueAverage(playerAverages)
   let fantasyValuesArray = []
 
-  for (const player in players) {
-    let cP = players[player]
+  for (const player in playerAverages) {
+    let cP = playerAverages[player]
     let playerFantasyValue = {
       name: cP.name,
       nba_team_id: cP.nba_team_id,
