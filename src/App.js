@@ -5,7 +5,9 @@ import Header from './Components/Header'
 import MainContainer from './Containers/MainContainer'
 import { connect } from 'react-redux'
 import { setPlayers } from './Redux/actions'
-
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 class App extends React.Component {
 
@@ -19,11 +21,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="container">
         <Header />
         {this.props.playerData.length > 0 ? <MainContainer/> : null}
         <Footer />
-      </>
+      </div>
     );
   }
 }

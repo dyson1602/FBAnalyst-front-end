@@ -4,10 +4,10 @@ import PlayerRankerSelector from '../Components/playerRankerSelector'
 function PlayerRankerContainer () {
 
   return (
-    <>
+    <div>
       <PlayerRankerChart />
       <PlayerRankerSelector />
-    </>
+    </div>
   )
 }
 

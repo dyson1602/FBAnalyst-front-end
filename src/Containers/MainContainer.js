@@ -7,25 +7,33 @@ import { setPlayerAverages } from '../Redux/actions'
 import { computeAverage } from '../StatFunctions/computeAverage'
 
 class MainContainer extends React.Component {
-      
-  componentDidMount() {  
-    if (this.props.playerData){
+
+  componentDidMount() {
+    if (this.props.playerData) {
       let playerAverages = []
       let players = this.props.playerData
       for (const player in players) {
-        playerAverages.push(computeAverage(players[player]))
+        let pA = computeAverage(players[player])
+        //games_played conditional needs to be adjusted to be dynamic
+        if (pA.avg_mins > 0 && pA.games_played > 4) {
+          playerAverages.push(pA)
+        }
       }
       this.props.dispatchSetPlayerAverages(playerAverages)
     }
+    // if (this.props.playerAverages) {
+    //   this.props.dispatchSetFantasy
+    // }
   }
-  
-  render(){
-    console.log('mounted')
+
+  render() {
     return (
-      <Switch>
-        <Route path="/NBAnalyst/playerRanker" component={PlayerRankerContainer} />
-        <Route path="/NBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path="/NBAnalyst/playerRanker" component={PlayerRankerContainer} />
+          <Route path="/NBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
+        </Switch>
+      </div>
     )
   }
 }

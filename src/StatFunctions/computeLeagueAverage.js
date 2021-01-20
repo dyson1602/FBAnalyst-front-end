@@ -25,8 +25,6 @@ export function computeLeagueAverage(playerAverages) {
   return leagueAverages
 }
 
-//need to write in conditional that adjusts for games played or something so that weak players
-//don't pull the average way down
 function leagueAvgCaddy(playerAverages, stat) {
   let sumArray = []
   for (const player in playerAverages) {

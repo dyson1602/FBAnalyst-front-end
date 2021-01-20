@@ -1,0 +1,18 @@
+/* containers */
+
+
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+/* Table Properties */
+
+.table-props {
+  font-size: small;
+}
+
+#col-width {
+  column-width: 100px;
+}
