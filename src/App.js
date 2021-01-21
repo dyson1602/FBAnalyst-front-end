@@ -5,6 +5,7 @@ import Header from './Components/Header'
 import MainContainer from './Containers/MainContainer'
 import { connect } from 'react-redux'
 import { setPlayers } from './Redux/actions'
+import { loadingScreen } from './Components/loading'
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -16,14 +17,16 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(players => {
         this.props.dispatchSetPlayers(players)
+        console.log('fetching players')
       })
   }
 
   render() {
     return (
-      <div className="container">
+      // <div className="my-container">
+      <div>
         <Header />
-        {this.props.playerData.length > 0 ? <MainContainer/> : null}
+        {this.props.playerData.length > 0 ? <MainContainer/> : loadingScreen()}
         <Footer />
       </div>
     );

@@ -4,9 +4,13 @@ import { setFantasyValues } from '../Redux/actions'
 import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { Button } from 'primereact/button'
 
 
 class PlayerRankerChart extends React.Component {
+
+  paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+  paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
 
   state = {
     combinedValues: []
@@ -55,36 +59,16 @@ class PlayerRankerChart extends React.Component {
   }
 
 
+
   render() {
     return (
       <>
         <div>
           <div className="card">
-            <DataTable value={this.state.combinedValues} className="p-datatable-striped" columnResizeMode="fit">
-              {/* <Column  field="fNba_score" header="fNba" sortable></Column>
-              <Column  field="name" header="Name" sortable></Column>
-              <Column  field="position" header="Pos" sortable></Column>
-              <Column  field="avg_mins" header="Mins" sortable></Column>
-              <Column  field="avg_fga" header="FgA" sortable></Column>
-              <Column  field="fgp" header="Fg%" sortable></Column>
-              <Column  field="avg_fta" header="FtA" sortable></Column>
-              <Column  field="ftp" header="Ft%" sortable></Column>
-              <Column  field="avg_tpm" header="TPM" sortable></Column>
-              <Column  field="avg_tot_reb" header="Reb" sortable></Column>
-              <Column  field="avg_assists" header="Ast" sortable></Column>
-              <Column  field="avg_steals" header="Stl" sortable></Column>
-              <Column  field="avg_blocks" header="Blk" sortable></Column>
-              <Column  field="avg_turnovers" header="TO" sortable></Column>
-              <Column  field="avg_points" header="Pts" sortable></Column>
-              <Column  field="fNba_ftp" header="fFt%" sortable></Column>
-              <Column  field="fNba_fgp" header="fFg%" sortable></Column>
-              <Column  field="fNba_tpm" header="fTPM" sortable></Column>
-              <Column  field="fNba_assists" header="fAst" sortable></Column>
-              <Column  field="fNba_tot_reb" header="fReb" sortable></Column>
-              <Column  field="fNba_steals" header="fStl" sortable></Column>
-              <Column  field="fNba_blocks" header="fBlk" sortable></Column>
-              <Column  field="fNba_turnovers" header="fTO" sortable></Column>
-              <Column  field="fNba_points" header="fPts" sortable></Column> */}
+            <DataTable value={this.state.combinedValues} className="p-datatable-striped" paginator
+              paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={25}
+              paginatorLeft={this.paginatorLeft} paginatorRight={this.paginatorRight}>
               <Column className="table-props" field="fNba_score" header="fNba" sortable></Column>
               <Column className="table-props" field="name" header="Name" sortable></Column>
               <Column className="table-props" field="position" header="Pos" sortable></Column>

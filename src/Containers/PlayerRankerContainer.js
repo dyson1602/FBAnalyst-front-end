@@ -5,8 +5,8 @@ function PlayerRankerContainer () {
 
   return (
     <div>
-      <PlayerRankerChart />
       <PlayerRankerSelector />
+      <PlayerRankerChart />
     </div>
   )
 }

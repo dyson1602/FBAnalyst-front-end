@@ -1,18 +1,46 @@
+/* HEADER */
+
+.hf-background {
+  background-color: lightslategray;
+}
+
+
 /* containers */
-
-
-.container {
+.my-container {
   margin-left: 5%;
   margin-right: 5%;
 }
 
-
 /* Table Properties */
 
 .table-props {
-  font-size: small;
+  font-size: 11px;
+  font-weight: bolder;
 }
 
-#col-width {
-  column-width: 100px;
+/* LOADING */
+
+.buffer {
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.fantasy-col-great {
+  background-color: green;
+}
+.fantasy-col-good {
+  background-color: lightgreen;
+}
+.fantasy-col-poor {
+  background-color: pink;
+}
+.fantasy-col-bad {
+  background-color: red;
 }

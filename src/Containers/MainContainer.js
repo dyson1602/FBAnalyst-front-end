@@ -1,6 +1,8 @@
 import React from 'react'
 import PlayerRankerContainer from './PlayerRankerContainer'
 import TradeAnalyzerContainer from './TradeAnalyzerContainer'
+import WelcomePageContainer from './WelcomePageContainer'
+import SimilarPlayersContainer from './SimilarPlayersContainer'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { setPlayerAverages } from '../Redux/actions'
@@ -21,17 +23,17 @@ class MainContainer extends React.Component {
       }
       this.props.dispatchSetPlayerAverages(playerAverages)
     }
-    // if (this.props.playerAverages) {
-    //   this.props.dispatchSetFantasy
-    // }
   }
+
 
   render() {
     return (
-      <div className="container">
+      <div className="my-container">
         <Switch>
-          <Route path="/NBAnalyst/playerRanker" component={PlayerRankerContainer} />
-          <Route path="/NBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
+          <Route exact path="/NBAnalyst" component={WelcomePageContainer}/>
+          <Route exact path="/NBAnalyst/playerRanker" component={PlayerRankerContainer} />
+          <Route exact path="/NBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
+          <Route exact path="/NBAnalyst/similarPlayers" component={SimilarPlayersContainer} />
         </Switch>
       </div>
     )

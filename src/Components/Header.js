@@ -1,30 +1,35 @@
 import { NavLink } from 'react-router-dom'
-import { TabMenu } from 'primereact/tabmenu';
-
-const items = [
-  {label: 'Home', icon: 'pi pi-fw pi-home'},
-  {label: 'Player Ranker', icon: 'pi pi-fw pi-calendar'},
-  {label: 'Trade Analyzer', icon: 'pi pi-fw pi-pencil'},
-  {label: 'Player Stats', icon: 'pi pi-fw pi-file'},
-  {label: 'Similar Player', icon: 'pi pi-fw pi-cog'}
-];
 
 function Header() {
 
   return (
-    <div>
-      <TabMenu model={items}/>
-      {/* <ul>
-        <NavLink to="/NBAnalyst/playerRanker">
-          <li>Player Ranker</li>
-        </NavLink>
-        <NavLink to="/NBAnalyst/tradeAnalyzer">
-          <li>Trade Analyzer</li>
-        </NavLink>
-        <NavLink to="/NBAnalyst/playerStats">
-          <li>Player Stats</li>
-        </NavLink>
-      </ul> */}
+    <div className="navbar-fixed">
+      <nav className="hf-background">
+        <div className="nav-wrapper container">
+
+          <NavLink to="/NBAnalyst" class="brand-logo right waves-effect waves-light">
+            NBAnalyst
+          </NavLink>
+
+          <ul className="left hide-on-med-and-down">
+            <li className="waves-effect waves-light">
+              <NavLink to="/NBAnalyst/playerRanker">
+                <div>Player Ranker</div>
+              </NavLink>
+            </li>
+            <li className="waves-effect waves-light">
+              <NavLink to="/NBAnalyst/tradeAnalyzer">
+                <div>Trade Analyzer</div>
+              </NavLink>
+            </li>
+            <li className="waves-effect waves-light">
+              <NavLink to="/NBAnalyst/similarPlayers">
+                <div>Similar Players</div>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
   )
 }
