@@ -1,7 +1,8 @@
 import {
   SET_PLAYERS,
   FANTASY_VALUE,
-  AVERAGES
+  AVERAGES,
+  CATEGORIES
 } from './actionTypes'
 
 export function setPlayers(value) {
@@ -14,4 +15,8 @@ export function setPlayerAverages(value) {
 
 export function setFantasyValues(value) {
   return { type: FANTASY_VALUE, payload: value }
+}
+
+export function setCategories(value) {
+  return { type: CATEGORIES, payload: value}
 }

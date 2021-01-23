@@ -1,18 +1,7 @@
 import { computeLeagueAverage } from './computeLeagueAverage'
+import { connect } from 'react-redux'
 
-const selection = {
-  fNba_tot_reb: true, 
-  fNba_assists: false, 
-  fNba_points: true, 
-  fNba_steals: true,
-  fNba_points: true,
-  fNba_blocks: true,
-  fNba_tpm: true,
-  fNba_ftp: true,
-  fNba_fgp: true
-}
-
-export function computeFantasyValue(playerAverages) {
+export function computeFantasyValue(playerAverages, props) {
 
   let leagueAverages = computeLeagueAverage(playerAverages)
   let fantasyValuesArray = []
@@ -44,14 +33,13 @@ export function computeFantasyValue(playerAverages) {
       fNba_p_fouls: fantasyValueCaddy(cP, leagueAverages, "avg_p_fouls"),
       fNba_points: fantasyValueCaddy(cP, leagueAverages, "avg_points"),
     }
-    playerFantasyValue.fNba_score = fantasyAggregate(playerFantasyValue, selection)
+    playerFantasyValue.fNba_score = fantasyAggregate(playerFantasyValue, props.categories)
     fantasyValuesArray.push(playerFantasyValue)
   }
   return fantasyValuesArray
 }
 
 function fantasyValueCaddy(currentPlayer, leagueAverages, stat) {
-
   let valMod = valueModifier(stat)
   let statVal = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
   return parseFloat(statVal.toFixed(2))
@@ -78,3 +66,11 @@ function valueModifier (stat) {
       return 1.0
   }
 }
+
+function msp(state){
+  return{
+    categories: state.categories
+  }
+}
+
+connect(msp)(computeFantasyValue)

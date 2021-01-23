@@ -4,6 +4,13 @@
   background-color: lightslategray;
 }
 
+/* FOOTER */
+
+.footer-set {
+  bottom: 0;
+  width: 100%;
+}
+
 
 /* containers */
 .my-container {
@@ -14,7 +21,7 @@
 /* Table Properties */
 
 .table-props {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bolder;
 }
 

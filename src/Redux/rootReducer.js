@@ -3,13 +3,15 @@ import { combineReducers } from 'redux'
 import {
   SET_PLAYERS,
   FANTASY_VALUE,
-  AVERAGES
+  AVERAGES,
+  CATEGORIES
 } from './actionTypes'
 
 const state = {
   playerData: [],
   playerAverages: [],
-  fantasyValues: []
+  fantasyValues: [],
+  categories: null
 }
 
 function playerDataReducer(prevState = state.playerData, action) {
@@ -39,10 +41,20 @@ function playerAveragesReducer(prevState = state.playerAverages, action) {
   }
 }
 
+function categoriesReducer (prevState = state.categories, action) {
+  switch(action.type) {
+    case CATEGORIES:
+      return action.payload
+    default:
+      return prevState
+  }
+}
+
 const rootReducer = combineReducers({
   playerData: playerDataReducer,
   playerAverages: playerAveragesReducer,
   fantasyValues: fantasyValuesReducer,
+  categories: categoriesReducer
 })
 
 export default rootReducer

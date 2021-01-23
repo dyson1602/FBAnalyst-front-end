@@ -1,11 +1,11 @@
 import PlayerRankerChart from '../Components/playerRankerChart'
-import PlayerRankerSelector from '../Components/playerRankerSelector'
+import CategorySelector from '../Components/categorySelector'
 
 function PlayerRankerContainer () {
 
   return (
-    <div>
-      <PlayerRankerSelector />
+    <div className="my-container">
+      <CategorySelector />
       <PlayerRankerChart />
     </div>
   )

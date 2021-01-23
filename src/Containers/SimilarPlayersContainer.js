@@ -1,7 +1,9 @@
+import SimilarPlayerChart from '../Components/similarPlayerChart'
+
 export default function SimilarPlayersContainer() {
   return (
     <>
-      <h1>SIMILAR PLAYERS CONTAINER</h1>
+      <SimilarPlayerChart />
     </>
   )
 }

@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="page-footer hf-background">
+    <footer className="page-footer hf-background footer-set">
     <div className="container">
       <div className="row">
         <div className="col l6 s12">
