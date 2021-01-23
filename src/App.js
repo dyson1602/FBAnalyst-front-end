@@ -17,7 +17,6 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(players => {
         this.props.dispatchSetPlayers(players)
-        console.log('fetching players')
       })
   }
 

@@ -1,16 +1,14 @@
 import React from 'react'
 
-class TradeResultChart extends React.Component {
+function TradeResultChart() {
 
-  render() {
-    return (
-      <>
-        <div>Trade Result Chart</div>
-      </>
-    )
-  }
-
+  return (
+    <>
+      <div>Trade Result Chart</div>
+    </>
+  )
 }
+
 
 
 export default TradeResultChart

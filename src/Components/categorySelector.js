@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ToggleButton } from 'primereact/togglebutton'
 import { Button } from 'primereact/button'
 import { connect } from 'react-redux'
@@ -11,10 +11,10 @@ const CategorySelector = (props) => {
   const [rebounds, setRebounds] = useState(true);
   const [blocks, setBlocks] = useState(true);
   const [steals, setSteals] = useState(true);
-  // const [turnovers, setTurnovers] = useState(true);
   const [fgp, setFgp] = useState(true);
   const [ftp, setFtp] = useState(true);
   const [tpoint, setTpoint] = useState(true);
+  // const [turnovers, setTurnovers] = useState(false);
 
   const categoriesObj = {
     fNba_points: points, 
@@ -28,7 +28,7 @@ const CategorySelector = (props) => {
     // fNba_turnovers: turnovers
   }
 
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     props.dispatchSetCategories(categoriesObj)
   }
 
@@ -41,10 +41,10 @@ const CategorySelector = (props) => {
           <ToggleButton checked={rebounds} onChange={(e) => setRebounds(e.value)} onLabel="Reb" offLabel="Reb" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           <ToggleButton checked={blocks} onChange={(e) => setBlocks(e.value)} onLabel="Blk" offLabel="Blk" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           <ToggleButton checked={steals} onChange={(e) => setSteals(e.value)} onLabel="Stl" offLabel="Stl" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
-          {/* <ToggleButton checked={turnovers} onChange={(e) => setTurnovers(e.value)} onLabel="TO" offLabel="TO" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} /> */}
           <ToggleButton checked={fgp} onChange={(e) => setFgp(e.value)} onLabel="FG%" offLabel="FG%" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           <ToggleButton checked={ftp} onChange={(e) => setFtp(e.value)} onLabel="FT%" offLabel="FT%" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           <ToggleButton checked={tpoint} onChange={(e) => setTpoint(e.value)} onLabel="3Pt" offLabel="3Pt" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
+          {/* <ToggleButton checked={turnovers} onChange={(e) => setTurnovers(e.value)} onLabel="TO" offLabel="TO" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} /> */}
           <Button onClick={clickHandler} label="Generate Rankings" className="p-button-raised" />
         </div>
       </div>

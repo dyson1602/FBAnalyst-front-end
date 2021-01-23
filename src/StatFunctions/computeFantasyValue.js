@@ -1,7 +1,7 @@
 import { computeLeagueAverage } from './computeLeagueAverage'
 import { connect } from 'react-redux'
 
-export function computeFantasyValue(playerAverages, props) {
+export function computeFantasyValue(playerAverages, categories) {
 
   let leagueAverages = computeLeagueAverage(playerAverages)
   let fantasyValuesArray = []
@@ -33,7 +33,7 @@ export function computeFantasyValue(playerAverages, props) {
       fNba_p_fouls: fantasyValueCaddy(cP, leagueAverages, "avg_p_fouls"),
       fNba_points: fantasyValueCaddy(cP, leagueAverages, "avg_points"),
     }
-    playerFantasyValue.fNba_score = fantasyAggregate(playerFantasyValue, props.categories)
+    playerFantasyValue.fNba_score = fantasyAggregate(playerFantasyValue, categories)
     fantasyValuesArray.push(playerFantasyValue)
   }
   return fantasyValuesArray
@@ -45,15 +45,15 @@ function fantasyValueCaddy(currentPlayer, leagueAverages, stat) {
   return parseFloat(statVal.toFixed(2))
 }
 
-function fantasyAggregate (playerObj, selection) {
+function fantasyAggregate (playerObj, categories) {
   let aggregateValue = []
-  // console.log(selection)
-  for (const item in selection) {
-    if(selection[item]) {
-      aggregateValue.push(playerObj[item])
+  for (const category in categories) {
+    if(categories[category]) {
+      aggregateValue.push(playerObj[category])
     }
   }
-  return parseFloat(aggregateValue.reduce((tot, val) => tot + val).toFixed(2))  
+  console.log("categories length: ", aggregateValue.length)
+  return parseFloat((aggregateValue.reduce((tot, val) => tot + val)/aggregateValue.length).toFixed(2))
 }
 
 function valueModifier (stat) {

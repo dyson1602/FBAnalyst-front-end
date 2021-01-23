@@ -1,34 +1,28 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { connect, useSelector } from 'react-redux'
 import { setFantasyValues } from '../Redux/actions'
 import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button'
 
-class PlayerRankerChart extends React.Component {
+function PlayerRankerChart() {
 
-  paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
-  paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
+  const categories = useSelector((state) => state.categories)
+  const playerAverages = useSelector((state) => state.playerAverages)
 
-  state = {
-    combinedValues: []
-  }
+  const [combinedValues, setCombinedValues] = useState()
 
-  componentDidMount() {
-    console.log("categories: ", this.props.categories)
-    if (this.props.categories) {
-      let playerAverages = this.props.playerAverages
-      let fantasyValues = computeFantasyValue(playerAverages, this.props)
-      let combinedValues = this.combineValues(playerAverages, fantasyValues)
-      this.props.dispatchSetFantasyValue(fantasyValues)
-      if (combinedValues) {
-        this.setState({ combinedValues: [...combinedValues] })
-      }
+  useEffect(() => {
+    if(categories){
+      const fantasyValues = computeFantasyValue(playerAverages, categories)
+      const combinedValues = combineValues(playerAverages, fantasyValues)
+      setCombinedValues(combinedValues)
     }
-  }
+  },[categories])
 
-  combineValues(avgs, fVal) {
+
+  function combineValues(avgs, fVal) {
     let combinedValues = []
 
     for (const player in fVal) {
@@ -59,56 +53,48 @@ class PlayerRankerChart extends React.Component {
     return combinedValues
   }
 
-  render() {
-    console.log(this.state.combinedValues.length)
-    return (
-      <>
-          <div>
-            <div className="card">
-              <DataTable value={this.state.combinedValues} className="p-datatable-striped" paginator
-                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={25} rowsPerPageOptions={[10, 20, 50]}
-                paginatorLeft={this.paginatorLeft} paginatorRight={this.paginatorRight}>
-                <Column className="table-props" field="fNba_score" header="fNba" sortable></Column>
-                <Column className="table-props" field="name" header="Name" sortable></Column>
-                <Column className="table-props" field="position" header="Pos" sortable></Column>
-                <Column className="table-props" field="avg_mins" header="Mins" sortable></Column>
-                <Column className="table-props" field="avg_fga" header="FgA" sortable></Column>
-                <Column className="table-props" field="fgp" header="Fg%" sortable></Column>
-                <Column className="table-props" field="avg_fta" header="FtA" sortable></Column>
-                <Column className="table-props" field="ftp" header="Ft%" sortable></Column>
-                <Column className="table-props" field="avg_tpm" header="TPM" sortable></Column>
-                <Column className="table-props" field="avg_tot_reb" header="Reb" sortable></Column>
-                <Column className="table-props" field="avg_assists" header="Ast" sortable></Column>
-                <Column className="table-props" field="avg_steals" header="Stl" sortable></Column>
-                <Column className="table-props" field="avg_blocks" header="Blk" sortable></Column>
-                <Column className="table-props" field="avg_turnovers" header="TO" sortable></Column>
-                <Column className="table-props" field="avg_points" header="Pts" sortable></Column>
-                <Column className="table-props" field="fNba_ftp" header="fFt%" sortable></Column>
-                <Column className="table-props" field="fNba_fgp" header="fFg%" sortable></Column>
-                <Column className="table-props" field="fNba_tpm" header="fTPM" sortable></Column>
-                <Column className="table-props" field="fNba_assists" header="fAst" sortable></Column>
-                <Column className="table-props" field="fNba_tot_reb" header="fReb" sortable></Column>
-                <Column className="table-props" field="fNba_steals" header="fStl" sortable></Column>
-                <Column className="table-props" field="fNba_blocks" header="fBlk" sortable></Column>
-                <Column className="table-props" field="fNba_turnovers" header="fTO" sortable></Column>
-                <Column className="table-props" field="fNba_points" header="fPts" sortable></Column>
-              </DataTable>
-            </div>
-          </div>
-      </>
-    )
-  }
-}
+  const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+  const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
 
-
-function msp(state) {
-  return {
-    playerData: state.playerData,
-    playerAverages: state.playerAverages,
-    fantasyValues: state.fantasyValues,
-    categories: state.categories
-  }
+  return (
+    <>
+    {categories ? 
+      <div>
+        <div className="card">
+          <DataTable value={combinedValues} className="p-datatable-striped" paginator
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={25} rowsPerPageOptions={[10, 20, 50]}
+            paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
+            <Column className="table-props" field="fNba_score" header="fNba" sortable></Column>
+            <Column className="table-props" field="name" header="Name" sortable></Column>
+            <Column className="table-props" field="position" header="Pos" sortable></Column>
+            <Column className="table-props" field="avg_mins" header="Mins" sortable></Column>
+            <Column className="table-props" field="avg_fga" header="FgA" sortable></Column>
+            <Column className="table-props" field="fgp" header="Fg%" sortable></Column>
+            <Column className="table-props" field="avg_fta" header="FtA" sortable></Column>
+            <Column className="table-props" field="ftp" header="Ft%" sortable></Column>
+            <Column className="table-props" field="avg_tpm" header="TPM" sortable></Column>
+            <Column className="table-props" field="avg_tot_reb" header="Reb" sortable></Column>
+            <Column className="table-props" field="avg_assists" header="Ast" sortable></Column>
+            <Column className="table-props" field="avg_steals" header="Stl" sortable></Column>
+            <Column className="table-props" field="avg_blocks" header="Blk" sortable></Column>
+            <Column className="table-props" field="avg_turnovers" header="TO" sortable></Column>
+            <Column className="table-props" field="avg_points" header="Pts" sortable></Column>
+            <Column className="table-props" field="fNba_ftp" header="fFt%" sortable></Column>
+            <Column className="table-props" field="fNba_fgp" header="fFg%" sortable></Column>
+            <Column className="table-props" field="fNba_tpm" header="fTPM" sortable></Column>
+            <Column className="table-props" field="fNba_assists" header="fAst" sortable></Column>
+            <Column className="table-props" field="fNba_tot_reb" header="fReb" sortable></Column>
+            <Column className="table-props" field="fNba_steals" header="fStl" sortable></Column>
+            <Column className="table-props" field="fNba_blocks" header="fBlk" sortable></Column>
+            <Column className="table-props" field="fNba_turnovers" header="fTO" sortable></Column>
+            <Column className="table-props" field="fNba_points" header="fPts" sortable></Column>
+          </DataTable>
+        </div>
+      </div>
+    : <h3>Waiting for selection...</h3>}
+    </>
+  )
 }
 
 function mdp(dispatch) {
@@ -117,4 +103,5 @@ function mdp(dispatch) {
   }
 }
 
-export default connect(msp, mdp)(PlayerRankerChart)
+// export default connect(msp, mdp)(PlayerRankerChart)
+export default connect(null, mdp)(PlayerRankerChart)
