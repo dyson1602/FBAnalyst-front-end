@@ -17,13 +17,13 @@ const CategorySelector = (props) => {
   // const [turnovers, setTurnovers] = useState(false);
 
   const categoriesObj = {
-    fNba_points: points, 
-    fNba_assists: assists, 
-    fNba_tot_reb: rebounds, 
-    fNba_blocks: blocks, 
-    fNba_steals: steals, 
-    fNba_fgp: fgp, 
-    fNba_ftp: ftp, 
+    fNba_points: points,
+    fNba_assists: assists,
+    fNba_tot_reb: rebounds,
+    fNba_blocks: blocks,
+    fNba_steals: steals,
+    fNba_fgp: fgp,
+    fNba_ftp: ftp,
     fNba_tpm: tpoint,
     // fNba_turnovers: turnovers
   }

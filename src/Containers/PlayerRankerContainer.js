@@ -1,12 +1,18 @@
 import PlayerRankerChart from '../Components/playerRankerChart'
 import CategorySelector from '../Components/categorySelector'
 
-function PlayerRankerContainer () {
-  
+function PlayerRankerContainer() {
+
   return (
     <div className="my-container">
-      <CategorySelector />
-      <PlayerRankerChart />
+      <div className="card">
+        <div style={{ margin: "10px" }}>
+          <CategorySelector />
+        </div>
+      </div>
+      <div style={{ margin: "10px" }}>
+        <PlayerRankerChart />
+      </div>
     </div>
   )
 }

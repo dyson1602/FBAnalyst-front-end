@@ -51,7 +51,7 @@ function TradeAnalyzerSelector() {
             <AutoComplete value={teamBPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamBPlayers(e.value)} />
           </span>
         </div>
-      <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised"/>
+      <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }}/>
       </div>
     </>
   )
