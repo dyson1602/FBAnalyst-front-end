@@ -2,7 +2,9 @@ import TradeAnalyzerSelector from '../Components/tradeAnalyzerSelector'
 import TradeResultChart from '../Components/tradeResultChart'
 import CategorySelector from '../Components/categorySelector'
 
+
 function TradeAnalyzerContainer() {
+
   
 
   return (
@@ -10,7 +12,7 @@ function TradeAnalyzerContainer() {
       <div style={{ margin: "10px"}}>
         <CategorySelector />
       </div>
-      <div style={{ margin: "10px"}}>
+      <div style={{display: "block", width: "50%", alignItems: "center"}}>
         <TradeAnalyzerSelector />
       </div>
       <div style={{ margin: "10px"}}>
