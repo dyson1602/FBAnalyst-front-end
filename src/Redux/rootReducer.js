@@ -11,7 +11,17 @@ const state = {
   playerData: [],
   playerAverages: [],
   fantasyValues: [],
-  categories: null
+  categories: {
+    fNba_points: true,
+    fNba_assists: true,
+    fNba_tot_reb: true,
+    fNba_blocks: true,
+    fNba_steals: true,
+    fNba_fgp: true,
+    fNba_ftp: true,
+    fNba_tpm: true,
+    // fNba_turnovers: turnovers
+  }
 }
 
 function playerDataReducer(prevState = state.playerData, action) {

@@ -45,7 +45,7 @@ const CategorySelector = (props) => {
           <ToggleButton checked={ftp} onChange={(e) => setFtp(e.value)} onLabel="FT%" offLabel="FT%" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           <ToggleButton checked={tpoint} onChange={(e) => setTpoint(e.value)} onLabel="3Pt" offLabel="3Pt" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} />
           {/* <ToggleButton checked={turnovers} onChange={(e) => setTurnovers(e.value)} onLabel="TO" offLabel="TO" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} /> */}
-          <Button onClick={clickHandler} label="Generate Rankings" className="p-button-raised" />
+          <Button onClick={clickHandler} label="Set Parameters" className="p-button-raised" />
         </div>
       </div>
     </>

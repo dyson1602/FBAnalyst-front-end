@@ -50,19 +50,6 @@ function TradeAnalyzerSelector() {
 
   const clickHandler = () => {
     if (teamAPlayers && teamBPlayers) {
-      if (!categories) {
-        categories = {
-          fNba_points: true,
-          fNba_assists: true,
-          fNba_tot_reb: true,
-          fNba_blocks: true,
-          fNba_steals: true,
-          fNba_fgp: true,
-          fNba_ftp: true,
-          fNba_tpm: true,
-          // fNba_turnovers: turnovers
-        }
-      }
       const fantasyValues = computeFantasyValue(allPlayers, categories)
       const combinedValues = combineValues(allPlayers, fantasyValues)
       const tradeScore = computeTradeScore(teamAPlayers, teamBPlayers, categories)
