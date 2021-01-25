@@ -4,7 +4,8 @@ import {
   SET_PLAYERS,
   FANTASY_VALUE,
   AVERAGES,
-  CATEGORIES
+  CATEGORIES,
+  TRADE_SCORE
 } from './actionTypes'
 
 const state = {
@@ -21,7 +22,8 @@ const state = {
     fNba_ftp: true,
     fNba_tpm: true,
     // fNba_turnovers: turnovers
-  }
+  },
+  tradeScore: null
 }
 
 function playerDataReducer(prevState = state.playerData, action) {
@@ -60,11 +62,21 @@ function categoriesReducer (prevState = state.categories, action) {
   }
 }
 
+function tradeScoreReducer (prevState = state.tradeScore, action) {
+  switch(action.type) {
+    case TRADE_SCORE:
+      return action.payload
+    default:
+      return prevState
+  }
+}
+
 const rootReducer = combineReducers({
   playerData: playerDataReducer,
   playerAverages: playerAveragesReducer,
   fantasyValues: fantasyValuesReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  tradeScore: tradeScoreReducer
 })
 
 export default rootReducer

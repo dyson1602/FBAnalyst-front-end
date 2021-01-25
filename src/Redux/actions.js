@@ -2,7 +2,8 @@ import {
   SET_PLAYERS,
   FANTASY_VALUE,
   AVERAGES,
-  CATEGORIES
+  CATEGORIES,
+  TRADE_SCORE
 } from './actionTypes'
 
 export function setPlayers(value) {
@@ -19,4 +20,8 @@ export function setFantasyValues(value) {
 
 export function setCategories(value) {
   return { type: CATEGORIES, payload: value}
+}
+
+export function setTradeScore(value) {
+  return { type: TRADE_SCORE, payload: value}
 }

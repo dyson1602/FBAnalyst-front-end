@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, connect } from 'react-redux'
 import { AutoComplete } from 'primereact/autocomplete';
 import { Button } from 'primereact/button'
 import computeTradeScore from '../StatFunctions/computeTradeScore'
 import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { combineValues } from '../StatFunctions/combineValues';
+import { setTradeScore } from '../Redux/actions';
 
-function TradeAnalyzerSelector() {
-//STATE
+const TradeAnalyzerSelector = (props) => {
+  //STATE
   const allPlayers = useSelector((state) => state.playerAverages)
   const categories = useSelector((state) => state.categories)
+  const fantasyValues = useSelector((state) => state.fantasyValues)
+
+
+  useEffect(() => {
+    setCombinedValues(combineValues(allPlayers, fantasyValues))
+  }, [fantasyValues])
+
+  useEffect(() => {
+    setCombinedValues(combineValues(allPlayers, fantasyValues))
+  }, [])
 
   const [teamAPlayers, setTeamAPlayers] = useState(null)
   const [teamBPlayers, setTeamBPlayers] = useState(null)
   const [filteredPlayers, setFilteredPlayers] = useState(null)
   const [formError, setFormError] = useState(false)
+  const [combinedValues, setCombinedValues] = useState(combineValues(allPlayers, fantasyValues))
 
   const searchPlayers = (event) => {
     setTimeout(() => {
       let filteredPlayers;
       if (!event.query.trim().length) {
-        filteredPlayers = [...allPlayers];
+        filteredPlayers = [...combinedValues];
       }
       else {
-        filteredPlayers = allPlayers.filter((allPlayers) => {
+        filteredPlayers = combinedValues.filter((allPlayers) => {
           return allPlayers.name.toLowerCase().startsWith(event.query.toLowerCase());
           // return allPlayers.name.toLowerCase().includes(event.query.toLowerCase());
         });
@@ -50,9 +62,8 @@ function TradeAnalyzerSelector() {
 
   const clickHandler = () => {
     if (teamAPlayers && teamBPlayers) {
-      const fantasyValues = computeFantasyValue(allPlayers, categories)
-      const combinedValues = combineValues(allPlayers, fantasyValues)
       const tradeScore = computeTradeScore(teamAPlayers, teamBPlayers, categories)
+      props.dispatchSetTradeScores(tradeScore)
       setFormError(false)
     } else {
       setFormError(true)
@@ -77,8 +88,13 @@ function TradeAnalyzerSelector() {
       </div>
     </>
   )
+}
 
+function mdp(dispatch) {
+  return {
+    dispatchSetTradeScores: tradeScore => dispatch(setTradeScore(tradeScore))
+  }
 }
 
 
-export default TradeAnalyzerSelector
+export default connect(null, mdp)(TradeAnalyzerSelector)

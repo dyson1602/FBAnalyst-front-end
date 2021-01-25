@@ -52,7 +52,6 @@ function fantasyAggregate (playerObj, categories) {
       aggregateValue.push(playerObj[category])
     }
   }
-  console.log("categories length: ", aggregateValue.length)
   return parseFloat((aggregateValue.reduce((tot, val) => tot + val)/aggregateValue.length).toFixed(2))
 }
 

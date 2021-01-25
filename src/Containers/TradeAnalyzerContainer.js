@@ -15,7 +15,7 @@ const TradeAnalyzerContainer = (props) => {
   useEffect(() => {
     const fantasyValues = computeFantasyValue(playerAverages, categories)
     props.dispatchSetFantasyValue(fantasyValues)
-  }, [playerAverages])
+  }, [playerAverages, categories])
 
   return (
     <>
