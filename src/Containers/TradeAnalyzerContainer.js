@@ -18,11 +18,11 @@ const TradeAnalyzerContainer = (props) => {
   }, [playerAverages, categories])
 
   return (
-    <div>
-      <div className="card" style={{ margin: "10px", width: "800px", height: "100px" }}>
+    <div className="my-container">
+      <div style={{ margin: "10px", display: "flex", justifyContent: "center"}} >
         <CategorySelector />
       </div>
-      <div style={{ display: "block", width: "50%", alignItems: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <TradeAnalyzerSelector />
       </div>
       <div style={{ margin: "10px" }}>

@@ -38,7 +38,7 @@ const CategorySelector = (props) => {
 
   return (
     <>
-      <div className="card" style={{ width: "60%", position: "relative" }}>
+      <div className="card" style={{ width: "60%", position: "relative", margin: "30px" }}>
         <div className="selector-div">
           {/* <div className="selector-centered"> */}
             <span className="category-span">Select Catergories: </span>

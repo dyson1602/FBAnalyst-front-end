@@ -73,7 +73,7 @@ const TradeAnalyzerSelector = (props) => {
   //RENDER
   return (
     <>
-      <div className="card">
+      <div className="card" style={{width: "50%"}}>
         <div style={{ display: "block", margin: "10px" }}>
           <span className="p-fluid">
             <h5>Your Player/s</h5>

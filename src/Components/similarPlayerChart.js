@@ -41,9 +41,8 @@ const SimilarPlayerChart = () => {
     labels: ['Points', 'Rebounds', 'Assists', '3-Point', 'Blocks', 'Steals', 'FG %', "FT %"]
   }
 
-  let chartData;
-
   function testChart() {
+    let chartData;
     if (firstPlayer && secondPlayer) {
       chartData = {
         labels: ['Points', 'Rebounds', 'Assists', '3-Point', 'Blocks', 'Steals', 'FG %', "FT %"],
@@ -57,15 +56,15 @@ const SimilarPlayerChart = () => {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(179,181,198,1)',
             data: [
-              firstPlayer.avg_points,
+              firstPlayer.avg_points * .33,
               firstPlayer.avg_tot_reb,
-              firstPlayer.avg_assists,
-              firstPlayer.avg_tpm,
-              firstPlayer.avg_blocks,
-              firstPlayer.avg_steals,
-              firstPlayer.fgp,
-              firstPlayer.ftp,
-              ]
+              firstPlayer.avg_assists * 1.5,
+              firstPlayer.avg_tpm * 3,
+              firstPlayer.avg_blocks * 5,
+              firstPlayer.avg_steals * 5,
+              firstPlayer.fgp * .15,
+              firstPlayer.ftp * .15,
+            ]
           },
           {
             label: secondPlayer.name,
@@ -76,21 +75,22 @@ const SimilarPlayerChart = () => {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(255,99,132,1)',
             data: [
-              secondPlayer.avg_points,
+              secondPlayer.avg_points * .33,
               secondPlayer.avg_tot_reb,
-              secondPlayer.avg_assists,
-              secondPlayer.avg_tpm,
-              secondPlayer.avg_blocks,
-              secondPlayer.avg_steals,
-              secondPlayer.fgp,
-              secondPlayer.ftp,
-              ]
+              secondPlayer.avg_assists * 1.5,
+              secondPlayer.avg_tpm * 3,
+              secondPlayer.avg_blocks * 4,
+              secondPlayer.avg_steals * 4,
+              secondPlayer.fgp * .15,
+              secondPlayer.ftp * .15,
+            ]
           }
         ]
       };
       return chartData
     }
   }
+
   const lightOptions = {
     legend: {
       labels: {
@@ -103,24 +103,31 @@ const SimilarPlayerChart = () => {
       },
       gridLines: {
         color: '#ebedef'
+      },
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 15,
+        display: false
       }
     }
   };
 
-
   return (
     <>
-      <div className="card">
-        <div style={{ display: "block", margin: "10px" }}>
-          <span className="p-fluid">
-            <h5>First Player</h5>
-            <AutoComplete value={firstPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setFirstPlayer(e.value)} />
-            <h5>Second Player</h5>
-            <AutoComplete value={secondPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setSecondPlayer(e.value)} />
-          </span>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+        <div className="card" style={{ margin: "10px", width: "50%" }}>
+          <div style={{ margin: "10px" }}>
+            <span className="p-fluid">
+              <h5>First Player</h5>
+              <AutoComplete value={firstPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setFirstPlayer(e.value)} />
+              <h5>Second Player</h5>
+              <AutoComplete value={secondPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setSecondPlayer(e.value)} />
+            </span>
+          </div>
+          {/* <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} /> */}
         </div>
-        {/* <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} /> */}
       </div>
+      <br />
       <div className="card">
         {firstPlayer && secondPlayer ?
           <Chart type="radar" data={testChart()} options={lightOptions} />

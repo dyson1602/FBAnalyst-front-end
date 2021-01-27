@@ -54,7 +54,7 @@ blockquote {
   font-style: normal; 
   font-variant: normal; 
   font-weight: 400; 
-  line-height: 30px; 
+  line-height: 30px;
 } 
 
 pre { 
@@ -78,7 +78,7 @@ pre {
 
 .footer-set {
   bottom: 0;
-  position: static;
+  
   width: 100%;
   z-index: 999;
 }
@@ -227,6 +227,18 @@ body {
   -webkit-animation-delay: 18s;
   -moz-animation-delay: 18s;
   animation-delay: 18s;
+}
+.slideshow li:nth-child(5) span {
+  background-image: url(https://www.nbcsports.com/sites/rsnunited/files/article/hero/Hachimura_R_USATSI_14160298.jpg);
+  -webkit-animation-delay: 24s;
+  -moz-animation-delay: 24s;
+  animation-delay: 24s;
+}
+.slideshow li:nth-child(6) span {
+  background-image: url(https://www.nbcsports.com/sites/rsnunited/files/article/hero/Hachimura_R_USATSI_14160298.jpg);
+  -webkit-animation-delay: 30s;
+  -moz-animation-delay: 30s;
+  animation-delay: 30s;
 }
 
 @-webkit-keyframes imageAnimation {
