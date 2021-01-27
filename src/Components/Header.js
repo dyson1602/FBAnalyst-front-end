@@ -3,28 +3,28 @@ import { NavLink } from 'react-router-dom'
 function Header() {
 
   return (
-    <div className="navbar-fixed">
-      <nav className="hf-background">
+    <div className="navbar-fixed" >
+      <nav className="hf-background" >
         <div className="nav-wrapper container">
 
-          <NavLink to="/NBAnalyst" class="brand-logo right waves-effect waves-light">
-            NBAnalyst
+          <NavLink to="/NBAnalyst" class=" right waves-effect waves-light">
+            <div style={{fontFamily: "Verdana, Geneva, sans-serif", fontSize: "36px", fontWeight: "900"}}>NBAnalyst</div>
           </NavLink>
 
           <ul className="left hide-on-med-and-down">
             <li className="waves-effect waves-light">
               <NavLink to="/NBAnalyst/playerRanker">
-                <div>Player Ranker</div>
+                <div style={{fontFamily: "Verdana, Geneva, sans-serif", fontSize: "24px", fontWeight: "700"}}>Player Ranker</div>
               </NavLink>
             </li>
             <li className="waves-effect waves-light">
               <NavLink to="/NBAnalyst/tradeAnalyzer">
-                <div>Trade Analyzer</div>
+                <div style={{fontFamily: "Verdana, Geneva, sans-serif", fontSize: "24px", fontWeight: "700"}}>Trade Analyzer</div>
               </NavLink>
             </li>
             <li className="waves-effect waves-light">
               <NavLink to="/NBAnalyst/similarPlayers">
-                <div>Similar Players</div>
+                <div style={{fontFamily: "Verdana, Geneva, sans-serif", fontSize: "24px", fontWeight: "700"}}>Similar Players</div>
               </NavLink>
             </li>
           </ul>

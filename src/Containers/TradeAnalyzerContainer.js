@@ -5,7 +5,7 @@ import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { setFantasyValues } from '../Redux/actions'
-import {connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 const TradeAnalyzerContainer = (props) => {
 
@@ -18,8 +18,8 @@ const TradeAnalyzerContainer = (props) => {
   }, [playerAverages, categories])
 
   return (
-    <>
-      <div style={{ margin: "10px" }}>
+    <div>
+      <div className="card" style={{ margin: "10px", width: "800px", height: "100px" }}>
         <CategorySelector />
       </div>
       <div style={{ display: "block", width: "50%", alignItems: "center" }}>
@@ -28,12 +28,12 @@ const TradeAnalyzerContainer = (props) => {
       <div style={{ margin: "10px" }}>
         <TradeResultChart />
       </div>
-    </>
+    </div>
   )
 }
 
-function mdp(dispatch){
-  return{
+function mdp(dispatch) {
+  return {
     dispatchSetFantasyValue: (fantasyValues => dispatch(setFantasyValues(fantasyValues)))
   }
 }

@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux'
 function TradeResultChart() {
 
   const tradeScore = useSelector((state) => state.tradeScore)
+  const categories = useSelector((state) => state.categories)
 
   const [yourPlayers, setYourPlayers] = useState()
   const [theirPlayers, setTheirPlayers] = useState()
   const [finalScore, setFinalScore] = useState(null)
+  
 
   useEffect(() => {
     if (tradeScore) {
@@ -18,6 +20,10 @@ function TradeResultChart() {
       // setFinalScore(finalScoreFunction(yourPlayers,theirPlayers))
     }
   }, [tradeScore])
+
+  useEffect(() => {
+    
+  }, [categories])
 
   useEffect(() => {
     if (yourPlayers && theirPlayers) {
@@ -31,67 +37,13 @@ function TradeResultChart() {
     }
   }, [yourPlayers])
 
+
   return (
     <>
-      <h4>Your Players</h4>
-      <DataTable value={yourPlayers} className="p-datatable-striped">
-        <Column className="table-props" field="name" header="Name" ></Column>
-        <Column className="table-props" field="fNba_score" header="fNba" ></Column>
-        <Column className="table-props" field="position" header="Pos" ></Column>
-        {/* <Column className="table-props" field="avg_mins" header="Mins" ></Column> */}
-        {/* <Column className="table-props" field="avg_fga" header="FgA" ></Column> */}
-        <Column className="table-props" field="fgp" header="Fg%" ></Column>
-        {/* <Column className="table-props" field="avg_fta" header="FtA" ></Column> */}
-        <Column className="table-props" field="ftp" header="Ft%" ></Column>
-        <Column className="table-props" field="avg_tpm" header="TPM" ></Column>
-        <Column className="table-props" field="avg_tot_reb" header="Reb" ></Column>
-        <Column className="table-props" field="avg_assists" header="Ast" ></Column>
-        <Column className="table-props" field="avg_steals" header="Stl" ></Column>
-        <Column className="table-props" field="avg_blocks" header="Blk" ></Column>
-        {/* <Column className="table-props" field="avg_turnovers" header="TO" ></Column> */}
-        <Column className="table-props" field="avg_points" header="Pts" ></Column>
-        <Column className="table-props" field="fNba_ftp" header="fFt%" ></Column>
-        <Column className="table-props" field="fNba_fgp" header="fFg%" ></Column>
-        <Column className="table-props" field="fNba_tpm" header="fTPM" ></Column>
-        <Column className="table-props" field="fNba_assists" header="fAst" ></Column>
-        <Column className="table-props" field="fNba_tot_reb" header="fReb" ></Column>
-        <Column className="table-props" field="fNba_steals" header="fStl" ></Column>
-        <Column className="table-props" field="fNba_blocks" header="fBlk" ></Column>
-        {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
-        <Column className="table-props" field="fNba_points" header="fPts" ></Column>
-      </DataTable>
-      <h4>Opponents Players</h4>
-      <DataTable value={theirPlayers} className="p-datatable-striped">
-        <Column className="table-props" field="name" header="Name" ></Column>
-        <Column className="table-props" field="fNba_score" header="fNba" ></Column>
-        <Column className="table-props" field="position" header="Pos" ></Column>
-        {/* <Column className="table-props" field="avg_mins" header="Mins" ></Column> */}
-        {/* <Column className="table-props" field="avg_fga" header="FgA" ></Column> */}
-        <Column className="table-props" field="fgp" header="Fg%" ></Column>
-        {/* <Column className="table-props" field="avg_fta" header="FtA" ></Column> */}
-        <Column className="table-props" field="ftp" header="Ft%" ></Column>
-        <Column className="table-props" field="avg_tpm" header="TPM" ></Column>
-        <Column className="table-props" field="avg_tot_reb" header="Reb" ></Column>
-        <Column className="table-props" field="avg_assists" header="Ast" ></Column>
-        <Column className="table-props" field="avg_steals" header="Stl" ></Column>
-        <Column className="table-props" field="avg_blocks" header="Blk" ></Column>
-        {/* <Column className="table-props" field="avg_turnovers" header="TO" ></Column> */}
-        <Column className="table-props" field="avg_points" header="Pts" ></Column>
-        <Column className="table-props" field="fNba_ftp" header="fFt%" ></Column>
-        <Column className="table-props" field="fNba_fgp" header="fFg%" ></Column>
-        <Column className="table-props" field="fNba_tpm" header="fTPM" ></Column>
-        <Column className="table-props" field="fNba_assists" header="fAst" ></Column>
-        <Column className="table-props" field="fNba_tot_reb" header="fReb" ></Column>
-        <Column className="table-props" field="fNba_steals" header="fStl" ></Column>
-        <Column className="table-props" field="fNba_blocks" header="fBlk" ></Column>
-        {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
-        <Column className="table-props" field="fNba_points" header="fPts" ></Column>
-      </DataTable>
-
       {finalScore
-        ? <div>
-          <h4>Difference</h4>
-          <DataTable value={finalScore} className="p-datatable-striped">
+        ? <>
+          <h4>Your Players</h4>
+          <DataTable value={yourPlayers} className="p-datatable-striped">
             <Column className="table-props" field="name" header="Name" ></Column>
             <Column className="table-props" field="fNba_score" header="fNba" ></Column>
             <Column className="table-props" field="position" header="Pos" ></Column>
@@ -117,7 +69,64 @@ function TradeResultChart() {
             {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
             <Column className="table-props" field="fNba_points" header="fPts" ></Column>
           </DataTable>
-        </div>
+          <h4>Their Players</h4>
+          <DataTable value={theirPlayers} className="p-datatable-striped">
+            <Column className="table-props" field="name" header="Name" ></Column>
+            <Column className="table-props" field="fNba_score" header="fNba" ></Column>
+            <Column className="table-props" field="position" header="Pos" ></Column>
+            {/* <Column className="table-props" field="avg_mins" header="Mins" ></Column> */}
+            {/* <Column className="table-props" field="avg_fga" header="FgA" ></Column> */}
+            <Column className="table-props" field="fgp" header="Fg%" ></Column>
+            {/* <Column className="table-props" field="avg_fta" header="FtA" ></Column> */}
+            <Column className="table-props" field="ftp" header="Ft%" ></Column>
+            <Column className="table-props" field="avg_tpm" header="TPM" ></Column>
+            <Column className="table-props" field="avg_tot_reb" header="Reb" ></Column>
+            <Column className="table-props" field="avg_assists" header="Ast" ></Column>
+            <Column className="table-props" field="avg_steals" header="Stl" ></Column>
+            <Column className="table-props" field="avg_blocks" header="Blk" ></Column>
+            {/* <Column className="table-props" field="avg_turnovers" header="TO" ></Column> */}
+            <Column className="table-props" field="avg_points" header="Pts" ></Column>
+            <Column className="table-props" field="fNba_ftp" header="fFt%" ></Column>
+            <Column className="table-props" field="fNba_fgp" header="fFg%" ></Column>
+            <Column className="table-props" field="fNba_tpm" header="fTPM" ></Column>
+            <Column className="table-props" field="fNba_assists" header="fAst" ></Column>
+            <Column className="table-props" field="fNba_tot_reb" header="fReb" ></Column>
+            <Column className="table-props" field="fNba_steals" header="fStl" ></Column>
+            <Column className="table-props" field="fNba_blocks" header="fBlk" ></Column>
+            {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
+            <Column className="table-props" field="fNba_points" header="fPts" ></Column>
+          </DataTable>
+
+          <div>
+            <h4>Difference</h4>
+            <DataTable value={finalScore} className="p-datatable-striped">
+              <Column className="table-props" field="name" header="Name" ></Column>
+              <Column className="table-props" field="fNba_score" header="fNba" ></Column>
+              <Column className="table-props" field="position" header="Pos" ></Column>
+              {/* <Column className="table-props" field="avg_mins" header="Mins" ></Column> */}
+              {/* <Column className="table-props" field="avg_fga" header="FgA" ></Column> */}
+              <Column className="table-props" field="fgp" header="Fg%" ></Column>
+              {/* <Column className="table-props" field="avg_fta" header="FtA" ></Column> */}
+              <Column className="table-props" field="ftp" header="Ft%" ></Column>
+              <Column className="table-props" field="avg_tpm" header="TPM" ></Column>
+              <Column className="table-props" field="avg_tot_reb" header="Reb" ></Column>
+              <Column className="table-props" field="avg_assists" header="Ast" ></Column>
+              <Column className="table-props" field="avg_steals" header="Stl" ></Column>
+              <Column className="table-props" field="avg_blocks" header="Blk" ></Column>
+              {/* <Column className="table-props" field="avg_turnovers" header="TO" ></Column> */}
+              <Column className="table-props" field="avg_points" header="Pts" ></Column>
+              <Column className="table-props" field="fNba_ftp" header="fFt%" ></Column>
+              <Column className="table-props" field="fNba_fgp" header="fFg%" ></Column>
+              <Column className="table-props" field="fNba_tpm" header="fTPM" ></Column>
+              <Column className="table-props" field="fNba_assists" header="fAst" ></Column>
+              <Column className="table-props" field="fNba_tot_reb" header="fReb" ></Column>
+              <Column className="table-props" field="fNba_steals" header="fStl" ></Column>
+              <Column className="table-props" field="fNba_blocks" header="fBlk" ></Column>
+              {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
+              <Column className="table-props" field="fNba_points" header="fPts" ></Column>
+            </DataTable>
+          </div>
+        </>
         : null}
     </>
   )

@@ -3,7 +3,7 @@ import { useSelector, connect } from 'react-redux'
 import { AutoComplete } from 'primereact/autocomplete';
 import { Button } from 'primereact/button'
 import computeTradeScore from '../StatFunctions/computeTradeScore'
-import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
+// import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { combineValues } from '../StatFunctions/combineValues';
 import { setTradeScore } from '../Redux/actions';
 
@@ -12,7 +12,6 @@ const TradeAnalyzerSelector = (props) => {
   const allPlayers = useSelector((state) => state.playerAverages)
   const categories = useSelector((state) => state.categories)
   const fantasyValues = useSelector((state) => state.fantasyValues)
-
 
   useEffect(() => {
     setCombinedValues(combineValues(allPlayers, fantasyValues))
@@ -79,7 +78,7 @@ const TradeAnalyzerSelector = (props) => {
           <span className="p-fluid">
             <h5>Your Player/s</h5>
             <AutoComplete value={teamAPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamAPlayers(e.value)} />
-            <h5>Opponent's Player/s</h5>
+            <h5>Their Player/s</h5>
             <AutoComplete value={teamBPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamBPlayers(e.value)} />
           </span>
           {formError ? formErrorTemplate() : null}

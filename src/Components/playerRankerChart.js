@@ -19,6 +19,10 @@ function PlayerRankerChart() {
     if (categories) {
       const fantasyValues = computeFantasyValue(playerAverages, categories)
       const combinedValues = combineValues(playerAverages, fantasyValues)
+
+      const sortedCombinedValues = combinedValues.sort((a,b) => a.fNba_score - b.fNba_score )
+
+      // debugger
       setCombinedValues(combinedValues)
     }
   }, [categories])
@@ -32,10 +36,10 @@ function PlayerRankerChart() {
         <div className="card">
           <DataTable value={combinedValues} className="p-datatable" paginator
             paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={25} rowsPerPageOptions={[10, 20, 50]}
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10, 20, 50]}
             paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
             <Column className="table-props" field="fNba_score" header="fNba" sortable></Column>
-            <Column className="table-props" field="name" header="Name" sortable></Column>
+            <Column className="table-props" style={{width: "75px"}} field="name" header="Name" sortable></Column>
             <Column className="table-props" field="position" header="Pos" sortable></Column>
             <Column className="table-props" field="avg_mins" header="Mins" sortable></Column>
             <Column className="table-props" field="avg_fga" header="FgA" sortable></Column>
@@ -48,10 +52,8 @@ function PlayerRankerChart() {
             <Column className="table-props" field="avg_steals" header="Stl" sortable></Column>
             <Column className="table-props" field="avg_blocks" header="Blk" sortable></Column>
             <Column className="table-props" field="avg_turnovers" header="TO" sortable></Column>
-            <Column className="table-props" field="avg_points" header="Pts" sortable></Column>
-            {/* <ColoredColumn> */}
-              <ColoredColumn  field="fNba_ftp" header="fFt%" sortable></ColoredColumn>
-            {/* </ColoredColumn> */}
+            <Column className="table-props" field="avg_points" header="Pts" sortable></Column>              
+            <Column className="table-props" field="fNba_ftp" header="fFt%" sortable></Column>
             <Column className="table-props" field="fNba_fgp" header="fFg%" sortable></Column>
             <Column className="table-props" field="fNba_tpm" header="fTPM" sortable></Column>
             <Column className="table-props" field="fNba_assists" header="fAst" sortable></Column>

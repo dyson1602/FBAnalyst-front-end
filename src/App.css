@@ -1,14 +1,86 @@
 /* HEADER */
 
 .hf-background {
-  background-color: lightslategray;
+  background-color: #1d3557ff;
 }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.font-1 { 
+  font-family: Verdana, Geneva, sans-serif; 
+  font-size: 24px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 26.4px;
+} 
+
+.logo-font {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 900;
+  line-height: 40px;
+}
+
+h3 { 
+  font-family: Verdana, Geneva, sans-serif; 
+  font-size: 14px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 15.4px; 
+} 
+
+p { 
+  font-family: Verdana, Geneva, sans-serif; 
+  font-size: 14px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 20px; 
+} 
+
+blockquote { 
+  font-family: Verdana, Geneva, sans-serif; 
+  font-size: 21px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 30px; 
+} 
+
+pre { 
+  font-family: Verdana, Geneva, sans-serif; 
+  font-size: 13px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 18.5714px; 
+}
+
+/* CSS HEX 
+--imperial-red: #e63946ff;
+--honeydew: #f1faeeff;
+--powder-blue: #a8dadcff;
+--celadon-blue: #457b9dff;
+--prussian-blue: #1d3557ff;
+*/
 
 /* FOOTER */
 
 .footer-set {
   bottom: 0;
+  position: static;
   width: 100%;
+  z-index: 999;
 }
 
 
@@ -21,8 +93,25 @@
 /* Table Properties */
 
 .table-props {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 12px;
   font-weight: bolder;
+}
+.category-span{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bolder;
+  vertical-align: middle;
+}
+
+.selector-div {
+  position: relative;
+  height: 75px;
+  margin: 10px;
+}
+
+.selector-centered {
+  vertical-align: middle;
 }
 
 /* LOADING */
@@ -33,10 +122,8 @@
 }
 
 .welcome {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  width: 100%;
+  height: auto;
 }
 
 .fantasy-col-great {
@@ -50,4 +137,210 @@
 }
 .fantasy-col-bad {
   background-color: red;
+}
+
+
+
+
+
+
+/* slideshow */
+
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.slideshow {
+  list-style: none;
+  z-index: 0;
+}
+.slideshow li span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  color: transparent;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: none;
+  opacity: 0;
+  z-index: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: imageAnimation 24s linear infinite 0s;
+  -moz-animation: imageAnimation 24s linear infinite 0s;
+  animation: imageAnimation 24s linear infinite 0s;
+}
+.slideshow li h3 {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  bottom: 150px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  font-size: 4.0625em;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-animation: titleAnimation 24s linear 1 0s;
+  -moz-animation: titleAnimation 24s linear 1 0s;
+  animation: titleAnimation 24s linear 1 0s;
+}
+@media only screen and (min-width: 768px) {
+  .slideshow li h3 {
+    bottom: 30px;
+    font-size: 8.125em;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .slideshow li h3 {
+    font-size: 10.9375em;
+  }
+}
+
+.slideshow li:nth-child(1) span {
+  background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/cf/db/lebron-murray-ftrjpg_1gtcrd4pse8vh1f9cazwlgfot8.jpg?t=-1321007196&quality=100);
+}
+
+.slideshow li:nth-child(2) span {
+  background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/71/53/butler_5u9m3t09bwmj1ha96daf5xujs.png?t=1376498068&quality=100);
+  -webkit-animation-delay: 6s;
+  -moz-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+.slideshow li:nth-child(3) span {
+  background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/86/ea/jokic-davis-091620-ftr-gettyjpg_1l080kpaglfz61nu5c99px9l6h.jpg?t=-1683705676&quality=100);
+  -webkit-animation-delay: 12s;
+  -moz-animation-delay: 12s;
+  animation-delay: 12s;
+}
+
+.slideshow li:nth-child(4) span {
+  background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/ef/76/lebron-100720-ftr-gettyjpg_qwpb38nr3vcx174ivjcaqhmfw.jpg?t=71948357&w=%7Bwidth%7D);
+  -webkit-animation-delay: 18s;
+  -moz-animation-delay: 18s;
+  animation-delay: 18s;
+}
+
+@-webkit-keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+  }
+  12.5% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    -moz-animation-timing-function: ease-in;
+  }
+  12.5% {
+    opacity: 1;
+    -moz-animation-timing-function: ease-out;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  12.5% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes titleAnimation {
+  0% {
+    opacity: 0;
+  }
+  12.5% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes titleAnimation {
+  0% {
+    opacity: 0;
+  }
+  12.5% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes titleAnimation {
+  0% {
+    opacity: 0;
+  }
+  12.5% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  37.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.no-cssanimations .slideshow li span {
+  opacity: 1;
 }
