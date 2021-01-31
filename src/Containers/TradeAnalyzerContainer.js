@@ -25,7 +25,7 @@ const TradeAnalyzerContainer = (props) => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <TradeAnalyzerSelector />
       </div>
-      <div style={{ margin: "10px" }}>
+      <div style={{ margin: "10px", marginBottom: "30px" }}>
         <TradeResultChart />
       </div>
     </div>

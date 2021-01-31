@@ -125,11 +125,11 @@ function TradeResultChart() {
           {/* <Column className="table-props" field="fNba_turnovers" header="fTO" ></Column> */}
           <Column className="table-props" field="fNba_points" header="fPts" ></Column>
         </DataTable>
-        {!finalScore
+        {/* {!finalScore
           ? null
           : finalScore.fNba_score > 0
             ? <span style={{color: "darkgreen"}}>You win this trade!</span>
-            : <span style={{color: "red"}}>This is a poor trade for you</span>}
+            : <span style={{color: "red"}}>This is a poor trade for you</span>} */}
       </div>
     </>
     //     : null}

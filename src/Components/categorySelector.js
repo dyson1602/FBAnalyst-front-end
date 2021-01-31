@@ -3,6 +3,7 @@ import { ToggleButton } from 'primereact/togglebutton'
 import { Button } from 'primereact/button'
 import { connect } from 'react-redux'
 import { setCategories } from '../Redux/actions';
+import styled from 'styled-components'
 
 const CategorySelector = (props) => {
 
@@ -32,32 +33,36 @@ const CategorySelector = (props) => {
     props.dispatchSetCategories(categoriesObj)
   }, [categoriesObj])
 
-  // const clickHandler = () => {
-  //   props.dispatchSetCategories(categoriesObj)
-  // }
-
   return (
     <>
-      <div className="card" style={{ width: "60%", position: "relative", margin: "30px" }}>
+      <Card className="card">
         <div className="selector-div">
-          {/* <div className="selector-centered"> */}
-            <span className="category-span">Select Catergories: </span>
-            <ToggleButton checked={points} onChange={(e) => setPoints(e.value)} onLabel="Pts" offLabel="Pts" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={assists} onChange={(e) => setAssists(e.value)} onLabel="Ast" offLabel="Ast" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={rebounds} onChange={(e) => setRebounds(e.value)} onLabel="Reb" offLabel="Reb" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px", marginTop: "20px" }} />
-            <ToggleButton checked={blocks} onChange={(e) => setBlocks(e.value)} onLabel="Blk" offLabel="Blk" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={steals} onChange={(e) => setSteals(e.value)} onLabel="Stl" offLabel="Stl" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={fgp} onChange={(e) => setFgp(e.value)} onLabel="FG%" offLabel="FG%" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={ftp} onChange={(e) => setFtp(e.value)} onLabel="FT%" offLabel="FT%" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            <ToggleButton checked={tpoint} onChange={(e) => setTpoint(e.value)} onLabel="3Pt" offLabel="3Pt" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px', margin: "5px" }} />
-            {/* <ToggleButton checked={turnovers} onChange={(e) => setTurnovers(e.value)} onLabel="TO" offLabel="TO" onIcon="pi pi-check" offIcon="pi pi-times" style={{ width: '75px' }} /> */}
-            {/* <Button onClick={clickHandler} label="Set Parameters" className="p-button-raised" /> */}
-          {/* </div> */}
+          <span className="category-span">Select Catergories: </span>
+          <Toggler checked={points} onChange={(e) => setPoints(e.value)} onLabel="Pts" offLabel="Pts" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={assists} onChange={(e) => setAssists(e.value)} onLabel="Ast" offLabel="Ast" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={rebounds} onChange={(e) => setRebounds(e.value)} onLabel="Reb" offLabel="Reb" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={blocks} onChange={(e) => setBlocks(e.value)} onLabel="Blk" offLabel="Blk" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={steals} onChange={(e) => setSteals(e.value)} onLabel="Stl" offLabel="Stl" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={fgp} onChange={(e) => setFgp(e.value)} onLabel="FG%" offLabel="FG%" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={ftp} onChange={(e) => setFtp(e.value)} onLabel="FT%" offLabel="FT%" onIcon="pi pi-check" offIcon="pi pi-times" />
+          <Toggler checked={tpoint} onChange={(e) => setTpoint(e.value)} onLabel="3Pt" offLabel="3Pt" onIcon="pi pi-check" offIcon="pi pi-times" />
         </div>
-      </div>
+      </Card>
     </>
   )
 }
+
+const Card = styled.div`
+  width: 60%;
+  position: relative;
+  margin: 30px; 
+`
+
+const Toggler = styled(ToggleButton)`
+  width: 75px;
+  margin: 5px;
+  margin-top: 15px;
+`
 
 function mdp(dispatch) {
   return {

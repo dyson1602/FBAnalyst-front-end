@@ -172,9 +172,9 @@ body {
   z-index: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-animation: imageAnimation 24s linear infinite 0s;
-  -moz-animation: imageAnimation 24s linear infinite 0s;
-  animation: imageAnimation 24s linear infinite 0s;
+  -webkit-animation: imageAnimation 48s linear infinite 0s;
+  -moz-animation: imageAnimation 48s linear infinite 0s;
+  animation: imageAnimation 48s linear infinite 0s;
 }
 .slideshow li h3 {
   position: absolute;
@@ -188,9 +188,9 @@ body {
   font-family: "Josefin Sans", sans-serif;
   text-transform: uppercase;
   color: #fff;
-  -webkit-animation: titleAnimation 24s linear 1 0s;
-  -moz-animation: titleAnimation 24s linear 1 0s;
-  animation: titleAnimation 24s linear 1 0s;
+  -webkit-animation: titleAnimation 48s linear 1 0s;
+  -moz-animation: titleAnimation 48s linear 1 0s;
+  animation: titleAnimation 48s linear 1 0s;
 }
 @media only screen and (min-width: 768px) {
   .slideshow li h3 {
@@ -207,21 +207,18 @@ body {
 .slideshow li:nth-child(1) span {
   background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/cf/db/lebron-murray-ftrjpg_1gtcrd4pse8vh1f9cazwlgfot8.jpg?t=-1321007196&quality=100);
 }
-
 .slideshow li:nth-child(2) span {
   background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/71/53/butler_5u9m3t09bwmj1ha96daf5xujs.png?t=1376498068&quality=100);
   -webkit-animation-delay: 6s;
   -moz-animation-delay: 6s;
   animation-delay: 6s;
 }
-
 .slideshow li:nth-child(3) span {
   background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/86/ea/jokic-davis-091620-ftr-gettyjpg_1l080kpaglfz61nu5c99px9l6h.jpg?t=-1683705676&quality=100);
   -webkit-animation-delay: 12s;
   -moz-animation-delay: 12s;
   animation-delay: 12s;
 }
-
 .slideshow li:nth-child(4) span {
   background-image: url(https://images.daznservices.com/di/library/NBA_Global_CMS_image_storage/ef/76/lebron-100720-ftr-gettyjpg_qwpb38nr3vcx174ivjcaqhmfw.jpg?t=71948357&w=%7Bwidth%7D);
   -webkit-animation-delay: 18s;
@@ -229,16 +226,28 @@ body {
   animation-delay: 18s;
 }
 .slideshow li:nth-child(5) span {
-  background-image: url(https://www.nbcsports.com/sites/rsnunited/files/article/hero/Hachimura_R_USATSI_14160298.jpg);
+  background-image: url(https://images.daznservices.com/di/library/sporting_news/1d/c4/james-harden-kevin-durant-getty-120220-ftrjpg_1fpirdf9oa63z1tzclvhok1gjm.jpg?t=645721510&w=%7Bwidth%7D&quality=80);
   -webkit-animation-delay: 24s;
   -moz-animation-delay: 24s;
   animation-delay: 24s;
 }
 .slideshow li:nth-child(6) span {
-  background-image: url(https://www.nbcsports.com/sites/rsnunited/files/article/hero/Hachimura_R_USATSI_14160298.jpg);
+  background-image: url(https://oregonsportsnews.com/wp-content/uploads/2018/11/Damian-Lillard-3.jpg);
   -webkit-animation-delay: 30s;
   -moz-animation-delay: 30s;
   animation-delay: 30s;
+}
+.slideshow li:nth-child(7) span {
+  background-image: url(https://www.zagsblog.com/wp-content/uploads/2019/01/luka-doncic-dribbles-ben-simmons.jpg);
+  -webkit-animation-delay: 36s;
+  -moz-animation-delay: 36s;
+  animation-delay: 36s;
+}
+.slideshow li:nth-child(8) span {
+  background-image: url(https://images.performgroup.com/di/library/omnisport/26/ca/tatum-jayson-usnews-080119-ftr-getty_n56g4qe7bmbh1deoi5hy451na.jpg?t=1333190428&quality=100);
+  -webkit-animation-delay: 42s;
+  -moz-animation-delay: 42s;
+  animation-delay: 42s;
 }
 
 @-webkit-keyframes imageAnimation {
