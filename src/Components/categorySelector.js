@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ToggleButton } from 'primereact/togglebutton'
-import { Button } from 'primereact/button'
 import { connect } from 'react-redux'
 import { setCategories } from '../Redux/actions';
 import styled from 'styled-components'
