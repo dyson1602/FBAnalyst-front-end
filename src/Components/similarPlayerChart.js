@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Chart } from 'primereact/chart'
 import { useSelector } from 'react-redux'
 import { AutoComplete } from 'primereact/autocomplete'
+import styled from 'styled-components'
 
 
 const SimilarPlayerChart = () => {
@@ -20,8 +21,7 @@ const SimilarPlayerChart = () => {
       }
       else {
         filteredPlayers = playerAverages.filter((allPlayers) => {
-          return allPlayers.name.toLowerCase().startsWith(event.query.toLowerCase());
-          // return allPlayers.name.toLowerCase().includes(event.query.toLowerCase());
+          return allPlayers.name.toLowerCase().includes(event.query.toLowerCase());
         });
       }
       setFilteredPlayers(filteredPlayers);
@@ -114,19 +114,28 @@ const SimilarPlayerChart = () => {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
-        <div className="card" style={{ margin: "10px", width: "50%" }}>
-          <div style={{ margin: "10px" }}>
+      <Wrapper>
+        <Card className="card">
             <span className="p-fluid">
               <h5>First Player</h5>
-              <AutoComplete value={firstPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setFirstPlayer(e.value)} />
+              <AutoComplete
+                value={firstPlayer}
+                suggestions={filteredPlayers}
+                completeMethod={searchPlayers}
+                field="name" dropdown
+                itemTemplate={itemTemplate}
+                onChange={(e) => setFirstPlayer(e.value)} />
               <h5>Second Player</h5>
-              <AutoComplete value={secondPlayer} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" dropdown itemTemplate={itemTemplate} onChange={(e) => setSecondPlayer(e.value)} />
+              <AutoComplete
+                value={secondPlayer}
+                suggestions={filteredPlayers}
+                completeMethod={searchPlayers}
+                field="name" dropdown
+                itemTemplate={itemTemplate}
+                onChange={(e) => setSecondPlayer(e.value)} />
             </span>
-          </div>
-          {/* <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} /> */}
-        </div>
-      </div>
+        </Card>
+      </Wrapper>
       <br />
       <div className="card">
         {firstPlayer && secondPlayer ?
@@ -136,9 +145,17 @@ const SimilarPlayerChart = () => {
       </div>
     </>
   );
-
 }
 
-
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`
+const Card = styled.div`
+  margin: 10px;
+  width: 50%;
+  padding: 10px;
+`
 
 export default SimilarPlayerChart

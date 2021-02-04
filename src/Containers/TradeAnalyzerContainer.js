@@ -2,10 +2,11 @@ import TradeAnalyzerSelector from '../Components/tradeAnalyzerSelector'
 import TradeResultChart from '../Components/tradeResultChart'
 import CategorySelector from '../Components/categorySelector'
 import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { setFantasyValues } from '../Redux/actions'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 const TradeAnalyzerContainer = (props) => {
 
@@ -19,18 +20,26 @@ const TradeAnalyzerContainer = (props) => {
 
   return (
     <div className="my-container">
-      <div style={{ margin: "10px", display: "flex", justifyContent: "center"}} >
+      <Element >
         <CategorySelector />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      </Element>
+      <Element>
         <TradeAnalyzerSelector />
-      </div>
-      <div style={{ margin: "10px", marginBottom: "30px" }}>
-        <TradeResultChart />
-      </div>
+      </Element>
+      <Element>
+        <div>
+          <TradeResultChart />
+        </div>
+      </Element>
     </div>
   )
 }
+
+const Element = styled.div`
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+`
 
 function mdp(dispatch) {
   return {

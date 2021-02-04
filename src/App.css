@@ -116,6 +116,7 @@ pre {
 
 /* LOADING */
 
+
 .buffer {
   margin-top: 20%;
   margin-bottom: 20%;
@@ -123,25 +124,8 @@ pre {
 
 .welcome {
   width: 100%;
-  height: auto;
+  height: 97vh;
 }
-
-.fantasy-col-great {
-  background-color: green;
-}
-.fantasy-col-good {
-  background-color: lightgreen;
-}
-.fantasy-col-poor {
-  background-color: pink;
-}
-.fantasy-col-bad {
-  background-color: red;
-}
-
-
-
-
 
 
 /* slideshow */

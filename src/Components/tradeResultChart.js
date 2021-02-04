@@ -156,7 +156,6 @@ function finalScoreFunction(yourPlayers, theirPlayers) {
 
   for (const category in categories) {
     if (category !== "name") {
-      // console.log(category, categories, theirStats)
       if (categories[category] > theirStats[category]) {
         fs[category] = -parseFloat((categories[category] - theirStats[category]).toFixed(2))
       } else if (categories[category] < theirStats[category]) {

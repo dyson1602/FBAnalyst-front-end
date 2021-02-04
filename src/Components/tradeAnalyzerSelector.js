@@ -3,12 +3,12 @@ import { useSelector, connect } from 'react-redux'
 import { AutoComplete } from 'primereact/autocomplete';
 import { Button } from 'primereact/button'
 import computeTradeScore from '../StatFunctions/computeTradeScore'
-// import { computeFantasyValue } from '../StatFunctions/computeFantasyValue'
 import { combineValues } from '../StatFunctions/combineValues';
 import { setTradeScore } from '../Redux/actions';
+import styled from 'styled-components'
 
 const TradeAnalyzerSelector = (props) => {
-  //STATE
+ 
   const allPlayers = useSelector((state) => state.playerAverages)
   const categories = useSelector((state) => state.categories)
   const fantasyValues = useSelector((state) => state.fantasyValues)
@@ -43,8 +43,6 @@ const TradeAnalyzerSelector = (props) => {
     }, 250);
   }
 
-  //ELEMENT TEMPLATES
-
   const itemTemplate = (item) => {
     return (
       <div >
@@ -70,11 +68,9 @@ const TradeAnalyzerSelector = (props) => {
     return null
   }
 
-  //RENDER
   return (
     <>
-      <div className="card" style={{width: "50%"}}>
-        <div style={{ display: "block", margin: "10px" }}>
+      <Wrapper className="card">
           <span className="p-fluid">
             <h5>Your Player/s</h5>
             <AutoComplete value={teamAPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamAPlayers(e.value)} />
@@ -82,18 +78,21 @@ const TradeAnalyzerSelector = (props) => {
             <AutoComplete value={teamBPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamBPlayers(e.value)} />
           </span>
           {formError ? formErrorTemplate() : null}
-        </div>
         <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} />
-      </div>
+      </Wrapper>
     </>
   )
 }
+
+const Wrapper = styled.div`
+  width: 50%;
+  padding: 10px;
+`
 
 function mdp(dispatch) {
   return {
     dispatchSetTradeScores: tradeScore => dispatch(setTradeScore(tradeScore))
   }
 }
-
 
 export default connect(null, mdp)(TradeAnalyzerSelector)

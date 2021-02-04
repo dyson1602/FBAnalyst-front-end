@@ -3,7 +3,7 @@
 export default function WelcomePageContainer() {
   return (
     <div>
-      <div className="welcome" style={{ height: "97vh" }}>
+      <div className="welcome">
         <ul className="slideshow">
           <li><span></span></li>
           <li><span></span></li>
