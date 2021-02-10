@@ -41,21 +41,32 @@ export function computeFantasyValue(playerAverages, categories) {
 
 function fantasyValueCaddy(currentPlayer, leagueAverages, stat) {
   let valMod = valueModifier(stat)
-  let statVal = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
-  return parseFloat(statVal.toFixed(2))
+  switch (stat) {
+    case "fgp":
+      let statVal1 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
+      let modded1 = statVal1 * (currentPlayer["avg_fga"] / leagueAverages["avg_fga"])
+      return parseFloat(modded1.toFixed(2))
+    case "ftp":
+      let statVal2 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
+      let modded2 = statVal2 * (currentPlayer["avg_fta"] / leagueAverages["avg_fta"])
+      return parseFloat(modded2.toFixed(2))
+    default:
+      let statVal3 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
+      return parseFloat(statVal3.toFixed(2))
+  }
 }
 
-function fantasyAggregate (playerObj, categories) {
+function fantasyAggregate(playerObj, categories) {
   let aggregateValue = []
   for (const category in categories) {
-    if(categories[category]) {
+    if (categories[category]) {
       aggregateValue.push(playerObj[category])
     }
   }
-  return parseFloat((aggregateValue.reduce((tot, val) => tot + val)/aggregateValue.length).toFixed(2))
+  return parseFloat((aggregateValue.reduce((tot, val) => tot + val) / aggregateValue.length).toFixed(2))
 }
 
-function valueModifier (stat) {
+function valueModifier(stat) {
   switch (stat) {
     case "points" || "tot_rebs":
       return 0.67
@@ -66,8 +77,8 @@ function valueModifier (stat) {
   }
 }
 
-function msp(state){
-  return{
+function msp(state) {
+  return {
     categories: state.categories
   }
 }
