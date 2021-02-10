@@ -1,6 +1,6 @@
 
 
-export function computeAverage(player, gamesParameter = player.player_games.length) {
+export function computeAverage(player, gamesParameter = 0) {
   let playerGames = player.player_games
   let gP = gamesParameter
 
@@ -51,31 +51,35 @@ function avgCaddy(playerGames, stat, gP) {
         // adjust array conditionals to safeguard against User attempting to view more games
         // than the player has played; no negative slice
         let adjustMadeArray = []
-        {
+        if (gP !== 0) {
           madeArray.length - gP >= 0
             ? adjustMadeArray = [...madeArray.slice(madeArray.length - gP)]
             : adjustMadeArray = [...madeArray]
+        } else {
+          adjustMadeArray = [...madeArray]
         }
 
         let adjustAttemptsArray = []
-        {
+        if (gP !== 0){
           attemptsArray.length - gP >= 0
             ? adjustAttemptsArray = attemptsArray.slice(attemptsArray.length - gP)
             : adjustAttemptsArray = [...attemptsArray]
+        } else {
+          adjustAttemptsArray = [...attemptsArray]
         }
 
         // conditionals guard against dividing by zero
         let avgMade = 0.0
-        if (adjustMadeArray.length > 0){
-           avgMade = adjustMadeArray.reduce((tot, val) => tot + val) / adjustMadeArray.length
+        if (adjustMadeArray.length > 0) {
+          avgMade = adjustMadeArray.reduce((tot, val) => tot + val) / adjustMadeArray.length
         }
 
         let avgAttempts = 0.0
-        if (adjustAttemptsArray.length > 0){
-           avgAttempts = adjustAttemptsArray.reduce((tot, val) => tot + val) / adjustAttemptsArray.length
+        if (adjustAttemptsArray.length > 0) {
+          avgAttempts = adjustAttemptsArray.reduce((tot, val) => tot + val) / adjustAttemptsArray.length
         }
 
-        if (avgAttempts > 0){
+        if (avgAttempts > 0) {
           return parseFloat((avgMade * 100 / avgAttempts).toFixed(1))
         } else {
           return 0.0
@@ -86,20 +90,23 @@ function avgCaddy(playerGames, stat, gP) {
     default:
       if (playerGames.length > 0) {
         let sumArray = []
-        for (const game in playerGames) {
-          if(parseInt(playerGames[game].mins) > 0) {
+        for (let game in playerGames) {
+          if (parseInt(playerGames[game].mins) > 0) {
             sumArray.push(parseFloat(playerGames[game][stat]))
           }
         }
         let adjustArray = []
-        {
+
+        if (gP !== 0) {
           sumArray.length - gP >= 0
             ? adjustArray = [...sumArray.slice(sumArray.length - gP)]
             : adjustArray = [...sumArray]
+        } else {
+          adjustArray = [...sumArray]
         }
-        let average = 0.0 
-        if (adjustArray.length > 0){
-          average = parseFloat((adjustArray.reduce((tot, val) => tot + val) / gP).toFixed(1))
+        let average = 0.0
+        if (adjustArray.length > 0) {
+          average = parseFloat((adjustArray.reduce((tot, val) => tot + val) / adjustArray.length).toFixed(1))
         } else {
           average = 0.0
         }
@@ -110,10 +117,10 @@ function avgCaddy(playerGames, stat, gP) {
   }
 }
 
-function gamesPlayed(playerGames){
+function gamesPlayed(playerGames) {
   let gamesPlayed = []
   for (const game in playerGames) {
-    if(parseInt(playerGames[game].mins) > 0) {
+    if (parseInt(playerGames[game].mins) > 0) {
       gamesPlayed.push(1)
     }
   }
