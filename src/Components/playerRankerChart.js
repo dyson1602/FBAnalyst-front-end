@@ -19,10 +19,9 @@ function PlayerRankerChart() {
     if (categories) {
       const fantasyValues = computeFantasyValue(playerAverages, categories)
       const combinedValues = combineValues(playerAverages, fantasyValues)
-
+      
       const sortedCombinedValues = combinedValues.sort((a,b) => a.fNba_score - b.fNba_score )
 
-      // debugger
       setCombinedValues(combinedValues)
     }
   }, [categories])
