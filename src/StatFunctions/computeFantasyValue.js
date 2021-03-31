@@ -5,7 +5,7 @@ import { computeLeagueAverage } from './computeLeagueAverage'
 export function computeFantasyValue(playerStatAverages, statCategory) {
 
   const leagueStatAverages = computeLeagueAverage(playerStatAverages)
-  
+
   const fantasyValuesArray = []
 
   for (const player in playerStatAverages) {
@@ -44,19 +44,15 @@ export function computeFantasyValue(playerStatAverages, statCategory) {
 //Does the actual calculation for the fantasy value scores
 function calculateStatFantasyValue(currentPlayer, leagueStatAverages, statCategory) {
   const categoryValueModifier = calculateValueModifier(statCategory)
-  switch (statCategory) {
-    case "fgp":
-      const fgpCategoryValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
-      const adjustedFgpCategoryValue = fgpCategoryValue * (currentPlayer["avg_fga"] / leagueStatAverages["avg_fga"])
-      return parseFloat(adjustedFgpCategoryValue.toFixed(2))
-    case "ftp":
-      const ftpCategoryValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
-      const adjustedFtpCategoryValue = ftpCategoryValue * (currentPlayer["avg_fta"] / leagueStatAverages["avg_fta"])
-      return parseFloat(adjustedFtpCategoryValue.toFixed(2))
-    default:
-      const nonPercentBasedCategoryValues = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
-      return parseFloat(nonPercentBasedCategoryValues.toFixed(2))
-  }
+
+  let statFantasyValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
+
+  //Adds weight to category value based on quantity of shot attempts; 50% on 20 shots
+  // per game weighs more than 50% on 3 shots per game
+  if (statCategory === "fgp") statFantasyValue *= (currentPlayer["avg_fga"] / leagueStatAverages["avg_fga"])
+  if (statCategory === "ftp") statFantasyValue *= (currentPlayer["avg_fta"] / leagueStatAverages["avg_fta"])
+
+  return parseFloat(statFantasyValue.toFixed(2))
 }
 
 //Calculates the player's overall fantasy value score based on all categorys'
