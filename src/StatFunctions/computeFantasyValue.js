@@ -1,13 +1,12 @@
 import { computeLeagueAverage } from './computeLeagueAverage'
-import { connect } from 'react-redux'
 
-export function computeFantasyValue(playerAverages, categories) {
+export function computeFantasyValue(playerStatAverages, categories) {
 
-  let leagueAverages = computeLeagueAverage(playerAverages)
+  let leagueAverages = computeLeagueAverage(playerStatAverages)
   let fantasyValuesArray = []
 
-  for (const player in playerAverages) {
-    let cP = playerAverages[player]
+  for (const player in playerStatAverages) {
+    let cP = playerStatAverages[player]
     let playerFantasyValue = {
       name: cP.name,
       nba_team_id: cP.nba_team_id,
@@ -76,11 +75,3 @@ function valueModifier(stat) {
       return 1.0
   }
 }
-
-function msp(state) {
-  return {
-    categories: state.categories
-  }
-}
-
-connect(msp)(computeFantasyValue)
