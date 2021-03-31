@@ -21,8 +21,8 @@ const TradeAnalyzerSelector = (props) => {
     setCombinedValues(combineValues(allPlayers, fantasyValues))
   }, [])
 
-  const [teamAPlayers, setTeamAPlayers] = useState(null)
-  const [teamBPlayers, setTeamBPlayers] = useState(null)
+  const [teamAPlayers, setTeamAPlayers] = useState()
+  const [teamBPlayers, setTeamBPlayers] = useState()
   const [filteredPlayers, setFilteredPlayers] = useState(null)
   const [formError, setFormError] = useState(false)
   const [combinedValues, setCombinedValues] = useState(combineValues(allPlayers, fantasyValues))
@@ -57,7 +57,7 @@ const TradeAnalyzerSelector = (props) => {
     )
   }
 
-  const clickHandler = () => {
+  const compareTradeHandler = () => {
     if (teamAPlayers && teamBPlayers) {
       const tradeScore = computeTradeScore(teamAPlayers, teamBPlayers, categories)
       props.dispatchSetTradeScores(tradeScore)
@@ -78,7 +78,7 @@ const TradeAnalyzerSelector = (props) => {
             <AutoComplete value={teamBPlayers} suggestions={filteredPlayers} completeMethod={searchPlayers} field="name" multiple dropdown itemTemplate={itemTemplate} onChange={(e) => setTeamBPlayers(e.value)} />
           </span>
           {formError ? formErrorTemplate() : null}
-        <Button onClick={clickHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} />
+        <Button onClick={compareTradeHandler} label="Compare Trade" className="p-button-raised" style={{ margin: "10px" }} />
       </Wrapper>
     </>
   )
