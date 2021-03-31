@@ -29,10 +29,10 @@ class MainContainer extends React.Component {
     return (
       <div className="my-container">
         <Switch>
-          <Route exact path="/NBAnalyst" component={WelcomePageContainer} />
-          <Route exact path="/NBAnalyst/playerRanker" component={PlayerRankerContainer} />
-          <Route exact path="/NBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
-          <Route exact path="/NBAnalyst/similarPlayers" component={SimilarPlayersContainer} />
+          <Route exact path="/FBAnalyst" component={WelcomePageContainer} />
+          <Route exact path="/FBAnalyst/playerRanker" component={PlayerRankerContainer} />
+          <Route exact path="/FBAnalyst/tradeAnalyzer" component={TradeAnalyzerContainer} />
+          <Route exact path="/FBAnalyst/similarPlayers" component={SimilarPlayersContainer} />
         </Switch>
       </div>
     )

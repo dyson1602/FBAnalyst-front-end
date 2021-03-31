@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import finalLogo from '../images/finalLogo.png'
+import finalLogo from '../images/FBAnalystLogo.png'
 
 function Header() {
 
@@ -8,24 +8,24 @@ function Header() {
     <div className="navbar-fixed" >
       <nav className="hf-background" >
         <div className="nav-wrapper container">
-          <NavLink to="/NBAnalyst" class=" right waves-effect waves-light">
+          <NavLink to="/FBAnalyst" class=" right waves-effect waves-light">
             <div>
               <img src={finalLogo} />
             </div>
           </NavLink>
           <ul className="left hide-on-med-and-down">
             <li className="waves-effect waves-light">
-              <NavLink to="/NBAnalyst/playerRanker">
+              <NavLink to="/FBAnalyst/playerRanker">
                 <LinkText >Player Ranker</LinkText>
               </NavLink>
             </li>
             <li className="waves-effect waves-light">
-              <NavLink to="/NBAnalyst/tradeAnalyzer">
+              <NavLink to="/FBAnalyst/tradeAnalyzer">
                 <LinkText >Trade Analyzer</LinkText>
               </NavLink>
             </li>
             <li className="waves-effect waves-light">
-              <NavLink to="/NBAnalyst/similarPlayers">
+              <NavLink to="/FBAnalyst/similarPlayers">
                 <LinkText >Similar Players</LinkText>
               </NavLink>
             </li>

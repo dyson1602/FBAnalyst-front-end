@@ -33,11 +33,11 @@ function PlayerRankerChart() {
     <>
       <div>
         <div className="card">
-          <DataTable value={combinedValues} className="p-datatable" paginator
+          <DataTable value={combinedValues} className="p-datatable" paginator sortField="fNba_score" sortOrder={-1}
             paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10, 20, 50]}
             paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
-            <Column className="table-props" field="fNba_score" header="fNba" sortable></Column>
+            <Column className="table-props" field="fNba_score" header="fNba" sortable ></Column>
             <Column className="table-props" style={{width: "75px"}} field="name" header="Name" sortable></Column>
             <Column className="table-props" field="position" header="Pos" sortable></Column>
             <Column className="table-props" field="avg_mins" header="Mins" sortable></Column>
