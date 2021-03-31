@@ -35,10 +35,9 @@ export function computeAverage(player, gamesParameter = 0) {
 }
 
 function avgCaddy(playerGames, statCategory, gP) {
-  console.log(statCategory)
-  switch (statCategory) {
-    case "fgp" || "ftp" || "tpp":
-      if (playerGames.length > 0) {
+  if (playerGames.length > 0) {
+    switch (statCategory) {
+      case "fgp" || "ftp" || "tpp":
         const shotsMadeArray = []
         const shotAttemptsArray = []
         const cat = statCategory.slice(0, 2)
@@ -86,11 +85,7 @@ function avgCaddy(playerGames, statCategory, gP) {
         } else {
           return 0.0
         }
-      } else {
-        return 0.0
-      }
-    default:
-      if (playerGames.length > 0) {
+      default:
         const aggregateOfStatCategory = []
 
         playerGames.forEach(game => {
@@ -115,12 +110,96 @@ function avgCaddy(playerGames, statCategory, gP) {
         }
 
         return statCategoryAverage
-
-      } else {
-        return 0.0
-      }
-  }
+    }
+  } else return 0.0
 }
+
+  // function avgCaddy(playerGames, statCategory, gP) {
+  // switch (statCategory) {
+  //   case "fgp" || "ftp" || "tpp":
+  //     if (playerGames.length > 0) {
+  //       const shotsMadeArray = []
+  //       const shotAttemptsArray = []
+  //       const cat = statCategory.slice(0, 2)
+
+  //       playerGames.forEach(game => {
+  //         if (parseInt(game.mins) > 0) {
+  //           shotsMadeArray.push(parseFloat(game[`${cat}m`]))
+  //           shotAttemptsArray.push(parseFloat(game[`${cat}a`]))
+  //         }
+  //       })
+
+  //       // adjust array conditionals to safeguard against User attempting to view more games
+  //       // than the player has played; no negative slice
+  //       let adjustedShotsMadeArray
+  //       if (gP !== 0) {
+  //         shotsMadeArray.length - gP >= 0
+  //           ? adjustedShotsMadeArray = [...shotsMadeArray.slice(shotsMadeArray.length - gP)]
+  //           : adjustedShotsMadeArray = [...shotsMadeArray]
+  //       } else {
+  //         adjustedShotsMadeArray = [...shotsMadeArray]
+  //       }
+
+  //       let adjustedShotAttemptsArray
+  //       if (gP !== 0) {
+  //         shotAttemptsArray.length - gP >= 0
+  //           ? adjustedShotAttemptsArray = shotAttemptsArray.slice(shotAttemptsArray.length - gP)
+  //           : adjustedShotAttemptsArray = [...shotAttemptsArray]
+  //       } else {
+  //         adjustedShotAttemptsArray = [...shotAttemptsArray]
+  //       }
+
+  //       // conditionals guard against dividing by zero
+  //       let averageShotsMade = 0.0
+  //       if (adjustedShotsMadeArray.length > 0) {
+  //         averageShotsMade = adjustedShotsMadeArray.reduce((tot, val) => tot + val) / adjustedShotsMadeArray.length
+  //       }
+
+  //       let averageShotAttempts = 0.0
+  //       if (adjustedShotAttemptsArray.length > 0) {
+  //         averageShotAttempts = adjustedShotAttemptsArray.reduce((tot, val) => tot + val) / adjustedShotAttemptsArray.length
+  //       }
+
+  //       if (averageShotAttempts > 0) {
+  //         return parseFloat((averageShotsMade * 100 / averageShotAttempts).toFixed(1))
+  //       } else {
+  //         return 0.0
+  //       }
+  //     } else {
+  //       return 0.0
+  //     }
+  //   default:
+  //     if (playerGames.length > 0) {
+  //       const aggregateOfStatCategory = []
+
+  //       playerGames.forEach(game => {
+  //         if (parseInt(game.mins) > 0) {
+  //           aggregateOfStatCategory.push(parseFloat(game[statCategory]))
+  //         }
+  //       })
+
+  //       let adjustedAggregateOfStatCategory
+  //       if (gP !== 0) {
+  //         aggregateOfStatCategory.length - gP >= 0
+  //           ? adjustedAggregateOfStatCategory = [...aggregateOfStatCategory.slice(aggregateOfStatCategory.length - gP)]
+  //           : adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
+  //       } else {
+  //         adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
+  //       }
+
+  //       let statCategoryAverage = 0.0
+  //       if (adjustedAggregateOfStatCategory.length > 0) {
+  //         statCategoryAverage = parseFloat((adjustedAggregateOfStatCategory
+  //           .reduce((tot, val) => tot + val) / adjustedAggregateOfStatCategory.length).toFixed(1))
+  //       }
+
+  //       return statCategoryAverage
+
+  //     } else {
+  //       return 0.0
+  //     }
+  // }
+// }
 
 function gamesPlayed(playerGames) {
   let count = 0
