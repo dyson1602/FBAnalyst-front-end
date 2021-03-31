@@ -44,14 +44,13 @@ export function computeFantasyValue(playerStatAverages, statCategory) {
 //Does the actual calculation for the fantasy value scores
 function calculateStatFantasyValue(currentPlayer, leagueStatAverages, statCategory) {
   const categoryValueModifier = calculateValueModifier(statCategory)
-
   let statFantasyValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
-
+  
   //Adds weight to category value based on quantity of shot attempts; 50% on 20 shots
   // per game weighs more than 50% on 3 shots per game
   if (statCategory === "fgp") statFantasyValue *= (currentPlayer["avg_fga"] / leagueStatAverages["avg_fga"])
   if (statCategory === "ftp") statFantasyValue *= (currentPlayer["avg_fta"] / leagueStatAverages["avg_fta"])
-
+  
   return parseFloat(statFantasyValue.toFixed(2))
 }
 
