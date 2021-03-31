@@ -43,12 +43,12 @@ function avgCaddy(playerGames, statCategory, gP) {
         const shotAttemptsArray = []
         const cat = statCategory.slice(0, 2)
 
-        for (const game in playerGames) {
-          if (parseInt(playerGames[game].mins) > 0) {
-            shotsMadeArray.push(parseFloat(playerGames[game][`${cat}m`]))
-            shotAttemptsArray.push(parseFloat(playerGames[game][`${cat}a`]))
+        playerGames.forEach(game => {
+          if (parseInt(game.mins) > 0) {
+            shotsMadeArray.push(parseFloat(game[`${cat}m`]))
+            shotAttemptsArray.push(parseFloat(game[`${cat}a`]))
           }
-        }
+        })
 
         // adjust array conditionals to safeguard against User attempting to view more games
         // than the player has played; no negative slice
@@ -123,11 +123,7 @@ function avgCaddy(playerGames, statCategory, gP) {
 }
 
 function gamesPlayed(playerGames) {
-  let gamesPlayed = []
-  for (const game in playerGames) {
-    if (parseInt(playerGames[game].mins) > 0) {
-      gamesPlayed.push(1)
-    }
-  }
-  return gamesPlayed.length
+  let count = 0
+  playerGames.forEach(game => { if (parseInt(game.mins) > 0) count++ })
+  return count
 }
