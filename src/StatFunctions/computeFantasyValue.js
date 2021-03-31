@@ -1,72 +1,81 @@
 import { computeLeagueAverage } from './computeLeagueAverage'
 
-export function computeFantasyValue(playerStatAverages, categories) {
+//Returns array of all players' calculated fantasy values for each statistical
+//category.
+export function computeFantasyValue(playerStatAverages, statCategory) {
 
-  let leagueAverages = computeLeagueAverage(playerStatAverages)
-  let fantasyValuesArray = []
+  const leagueStatAverages = computeLeagueAverage(playerStatAverages)
+  
+  const fantasyValuesArray = []
 
   for (const player in playerStatAverages) {
-    let cP = playerStatAverages[player]
-    let playerFantasyValue = {
-      name: cP.name,
-      nba_team_id: cP.nba_team_id,
-      position: cP.position,
-      fNba_mins: fantasyValueCaddy(cP, leagueAverages, "avg_mins"),
-      fNba_fgm: fantasyValueCaddy(cP, leagueAverages, "avg_fgm"),
-      fNba_fga: fantasyValueCaddy(cP, leagueAverages, "avg_fga"),
-      fNba_fgp: fantasyValueCaddy(cP, leagueAverages, "fgp"),
-      fNba_ftm: fantasyValueCaddy(cP, leagueAverages, "avg_ftm"),
-      fNba_fta: fantasyValueCaddy(cP, leagueAverages, "avg_fta"),
-      fNba_ftp: fantasyValueCaddy(cP, leagueAverages, "ftp"),
-      fNba_tpm: fantasyValueCaddy(cP, leagueAverages, "avg_tpm"),
-      fNba_tpa: fantasyValueCaddy(cP, leagueAverages, "avg_tpa"),
-      fNba_tpp: fantasyValueCaddy(cP, leagueAverages, "tpp"),
-      fNba_off_reb: fantasyValueCaddy(cP, leagueAverages, "avg_off_reb"),
-      fNba_def_reb: fantasyValueCaddy(cP, leagueAverages, "avg_def_reb"),
-      fNba_tot_reb: fantasyValueCaddy(cP, leagueAverages, "avg_tot_reb"),
-      fNba_assists: fantasyValueCaddy(cP, leagueAverages, "avg_assists"),
-      fNba_steals: fantasyValueCaddy(cP, leagueAverages, "avg_steals"),
-      fNba_blocks: fantasyValueCaddy(cP, leagueAverages, "avg_blocks"),
-      fNba_turnovers: fantasyValueCaddy(cP, leagueAverages, "avg_turnovers"),
-      fNba_plus_minus: fantasyValueCaddy(cP, leagueAverages, "avg_plus_minus"),
-      fNba_p_fouls: fantasyValueCaddy(cP, leagueAverages, "avg_p_fouls"),
-      fNba_points: fantasyValueCaddy(cP, leagueAverages, "avg_points"),
+    const currentPlayer = playerStatAverages[player]
+    const playerFantasyValues = {
+      name: currentPlayer.name,
+      nba_team_id: currentPlayer.nba_team_id,
+      position: currentPlayer.position,
+      fNba_mins: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_mins"),
+      fNba_fgm: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_fgm"),
+      fNba_fga: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_fga"),
+      fNba_fgp: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "fgp"),
+      fNba_ftm: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_ftm"),
+      fNba_fta: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_fta"),
+      fNba_ftp: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "ftp"),
+      fNba_tpm: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_tpm"),
+      fNba_tpa: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_tpa"),
+      fNba_tpp: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "tpp"),
+      fNba_off_reb: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_off_reb"),
+      fNba_def_reb: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_def_reb"),
+      fNba_tot_reb: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_tot_reb"),
+      fNba_assists: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_assists"),
+      fNba_steals: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_steals"),
+      fNba_blocks: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_blocks"),
+      fNba_turnovers: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_turnovers"),
+      fNba_plus_minus: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_plus_minus"),
+      fNba_p_fouls: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_p_fouls"),
+      fNba_points: calculateStatFantasyValue(currentPlayer, leagueStatAverages, "avg_points"),
     }
-    playerFantasyValue.fNba_score = fantasyAggregate(playerFantasyValue, categories)
-    fantasyValuesArray.push(playerFantasyValue)
+    playerFantasyValues.fNba_score = fantasyValueAverage(playerFantasyValues, statCategory)
+    fantasyValuesArray.push(playerFantasyValues)
   }
   return fantasyValuesArray
 }
 
-function fantasyValueCaddy(currentPlayer, leagueAverages, stat) {
-  let valMod = valueModifier(stat)
-  switch (stat) {
+//Does the actual calculation for the fantasy value scores
+function calculateStatFantasyValue(currentPlayer, leagueStatAverages, statCategory) {
+  const categoryValueModifier = calculateValueModifier(statCategory)
+  switch (statCategory) {
     case "fgp":
-      let statVal1 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
-      let modded1 = statVal1 * (currentPlayer["avg_fga"] / leagueAverages["avg_fga"])
-      return parseFloat(modded1.toFixed(2))
+      const fgpCategoryValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
+      const adjustedFgpCategoryValue = fgpCategoryValue * (currentPlayer["avg_fga"] / leagueStatAverages["avg_fga"])
+      return parseFloat(adjustedFgpCategoryValue.toFixed(2))
     case "ftp":
-      let statVal2 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
-      let modded2 = statVal2 * (currentPlayer["avg_fta"] / leagueAverages["avg_fta"])
-      return parseFloat(modded2.toFixed(2))
+      const ftpCategoryValue = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
+      const adjustedFtpCategoryValue = ftpCategoryValue * (currentPlayer["avg_fta"] / leagueStatAverages["avg_fta"])
+      return parseFloat(adjustedFtpCategoryValue.toFixed(2))
     default:
-      let statVal3 = (currentPlayer[stat] / (leagueAverages[stat] * valMod)) - 1
-      return parseFloat(statVal3.toFixed(2))
+      const nonPercentBasedCategoryValues = (currentPlayer[statCategory] / (leagueStatAverages[statCategory] * categoryValueModifier)) - 1
+      return parseFloat(nonPercentBasedCategoryValues.toFixed(2))
   }
 }
 
-function fantasyAggregate(playerObj, categories) {
-  let aggregateValue = []
-  for (const category in categories) {
-    if (categories[category]) {
-      aggregateValue.push(playerObj[category])
+//Calculates the player's overall fantasy value score based on all categorys'
+//calculated fantasy values. Accepts statCategory argument so that the average
+//can be recomputed when categories are deselected by user
+function fantasyValueAverage(player, statCategory) {
+  const averageValue = []
+  for (const category in statCategory) {
+    if (statCategory[category]) {
+      averageValue.push(player[category])
     }
   }
-  return parseFloat((aggregateValue.reduce((tot, val) => tot + val) / aggregateValue.length).toFixed(2))
+  return parseFloat((averageValue.reduce((sum, val) => sum + val) / averageValue.length).toFixed(2))
 }
 
-function valueModifier(stat) {
-  switch (stat) {
+//Returns value to multiply the stat by, because the categories don't carry the 
+//same statistical weight in determining fantasy value.
+function calculateValueModifier(statCategory) {
+  switch (statCategory) {
     case "points" || "tot_rebs":
       return 0.67
     case "steals":
