@@ -58,13 +58,13 @@ function calculateStatFantasyValue(currentPlayer, leagueStatAverages, statCatego
 //Calculates the player's overall fantasy value score based on all categorys'
 //calculated fantasy values. Accepts statCategory argument so that the average
 //can be recomputed when categories are deselected by user
-function fantasyValueAverage(player, statCategory) {
+function fantasyValueAverage(player, statCategories) {
   const averageValue = []
-  for (const category in statCategory) {
-    if (statCategory[category]) {
-      averageValue.push(player[category])
-    }
-  }
+
+  Object.entries(statCategories).forEach(([category, selected]) => {
+    if(selected) averageValue.push(player[category])
+  })
+  
   return parseFloat((averageValue.reduce((sum, val) => sum + val) / averageValue.length).toFixed(2))
 }
 
