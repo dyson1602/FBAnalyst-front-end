@@ -4,7 +4,7 @@
 export function computeAverage(player, gamesParameter = 0) {
   const playerGames = player.player_games
   const gP = gamesParameter
-
+ 
   const playerAverages = {
     name: player.name,
     nba_team_id: player.nba_team_id,
@@ -34,172 +34,55 @@ export function computeAverage(player, gamesParameter = 0) {
   return playerAverages
 }
 
-
-
 function avgCaddy(playerGames, statCategory, gP) {
   if (playerGames.length > 0) {
     switch (statCategory) {
       case "fgp" || "ftp" || "tpp":
-        const shotsMadeArray = []
-        const shotAttemptsArray = []
-        const cat = statCategory.slice(0, 2)
-
-        playerGames.forEach(game => {
-          if (parseInt(game.mins) > 0) {
-            shotsMadeArray.push(parseFloat(game[`${cat}m`]))
-            shotAttemptsArray.push(parseFloat(game[`${cat}a`]))
-          }
-        })
-
-        // adjust array conditionals to safeguard against User attempting to view more games
-        // than the player has played; no negative slice
-        const adjustedShotsMadeArray = adjustShotsBygP(shotsMadeArray, gP)
-        const adjustedShotAttemptsArray = adjustShotsBygP(shotAttemptsArray, gP)
-        
-
-        // conditionals guard against dividing by zero
-        let averageShotsMade = 0.0
-        if (adjustedShotsMadeArray.length > 0) {
-          averageShotsMade = adjustedShotsMadeArray.reduce((tot, val) => tot + val) / adjustedShotsMadeArray.length
-        }
-
-        let averageShotAttempts = 0.0
-        if (adjustedShotAttemptsArray.length > 0) {
-          averageShotAttempts = adjustedShotAttemptsArray.reduce((tot, val) => tot + val) / adjustedShotAttemptsArray.length
-        }
-
-        if (averageShotAttempts > 0) {
-          return parseFloat((averageShotsMade * 100 / averageShotAttempts).toFixed(1))
-        } else {
-          return 0.0
-        }
+        const shotType = statCategory.slice(0, 2)
+        const shotsMadeArray = aggregateStatsInArray(playerGames, `${shotType}m`)
+        const shotAttemptsArray = aggregateStatsInArray(playerGames, `${shotType}a`)
+        const adjustedShotsMadeArray = adjustStatsByGp(shotsMadeArray, gP)
+        const adjustedShotAttemptsArray = adjustStatsByGp(shotAttemptsArray, gP)
+        const averageShotsMade = averageStatCalculator(adjustedShotsMadeArray)
+        const averageShotAttempts = averageStatCalculator(adjustedShotAttemptsArray)
+        return averageShotAttempts > 0
+          ? parseFloat((averageShotsMade * 100 / averageShotAttempts).toFixed(1))
+          : 0.0
       default:
-        const aggregateOfStatCategory = []
-
-        playerGames.forEach(game => {
-          if (parseInt(game.mins) > 0) {
-            aggregateOfStatCategory.push(parseFloat(game[statCategory]))
-          }
-        })
-
-        let adjustedAggregateOfStatCategory
-        if (gP !== 0) {
-          aggregateOfStatCategory.length - gP >= 0
-            ? adjustedAggregateOfStatCategory = [...aggregateOfStatCategory.slice(aggregateOfStatCategory.length - gP)]
-            : adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
-        } else {
-          adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
-        }
-
-        let statCategoryAverage = 0.0
-        if (adjustedAggregateOfStatCategory.length > 0) {
-          statCategoryAverage = parseFloat((adjustedAggregateOfStatCategory
-            .reduce((tot, val) => tot + val) / adjustedAggregateOfStatCategory.length).toFixed(1))
-        }
-
-        return statCategoryAverage
+        const aggregateOfStatCategory = aggregateStatsInArray(playerGames, statCategory)
+        const adjustedAggregateOfStatCategory = adjustStatsByGp(aggregateOfStatCategory, gP)
+        return parseFloat(averageStatCalculator(adjustedAggregateOfStatCategory).toFixed(1))
     }
   } else return 0.0
 }
 
-  // function avgCaddy(playerGames, statCategory, gP) {
-  // switch (statCategory) {
-  //   case "fgp" || "ftp" || "tpp":
-  //     if (playerGames.length > 0) {
-  //       const shotsMadeArray = []
-  //       const shotAttemptsArray = []
-  //       const cat = statCategory.slice(0, 2)
-
-  //       playerGames.forEach(game => {
-  //         if (parseInt(game.mins) > 0) {
-  //           shotsMadeArray.push(parseFloat(game[`${cat}m`]))
-  //           shotAttemptsArray.push(parseFloat(game[`${cat}a`]))
-  //         }
-  //       })
-
-  //       // adjust array conditionals to safeguard against User attempting to view more games
-  //       // than the player has played; no negative slice
-  //       let adjustedShotsMadeArray
-  //       if (gP !== 0) {
-  //         shotsMadeArray.length - gP >= 0
-  //           ? adjustedShotsMadeArray = [...shotsMadeArray.slice(shotsMadeArray.length - gP)]
-  //           : adjustedShotsMadeArray = [...shotsMadeArray]
-  //       } else {
-  //         adjustedShotsMadeArray = [...shotsMadeArray]
-  //       }
-
-  //       let adjustedShotAttemptsArray
-  //       if (gP !== 0) {
-  //         shotAttemptsArray.length - gP >= 0
-  //           ? adjustedShotAttemptsArray = shotAttemptsArray.slice(shotAttemptsArray.length - gP)
-  //           : adjustedShotAttemptsArray = [...shotAttemptsArray]
-  //       } else {
-  //         adjustedShotAttemptsArray = [...shotAttemptsArray]
-  //       }
-
-  //       // conditionals guard against dividing by zero
-  //       let averageShotsMade = 0.0
-  //       if (adjustedShotsMadeArray.length > 0) {
-  //         averageShotsMade = adjustedShotsMadeArray.reduce((tot, val) => tot + val) / adjustedShotsMadeArray.length
-  //       }
-
-  //       let averageShotAttempts = 0.0
-  //       if (adjustedShotAttemptsArray.length > 0) {
-  //         averageShotAttempts = adjustedShotAttemptsArray.reduce((tot, val) => tot + val) / adjustedShotAttemptsArray.length
-  //       }
-
-  //       if (averageShotAttempts > 0) {
-  //         return parseFloat((averageShotsMade * 100 / averageShotAttempts).toFixed(1))
-  //       } else {
-  //         return 0.0
-  //       }
-  //     } else {
-  //       return 0.0
-  //     }
-  //   default:
-  //     if (playerGames.length > 0) {
-  //       const aggregateOfStatCategory = []
-
-  //       playerGames.forEach(game => {
-  //         if (parseInt(game.mins) > 0) {
-  //           aggregateOfStatCategory.push(parseFloat(game[statCategory]))
-  //         }
-  //       })
-
-  //       let adjustedAggregateOfStatCategory
-  //       if (gP !== 0) {
-  //         aggregateOfStatCategory.length - gP >= 0
-  //           ? adjustedAggregateOfStatCategory = [...aggregateOfStatCategory.slice(aggregateOfStatCategory.length - gP)]
-  //           : adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
-  //       } else {
-  //         adjustedAggregateOfStatCategory = [...aggregateOfStatCategory]
-  //       }
-
-  //       let statCategoryAverage = 0.0
-  //       if (adjustedAggregateOfStatCategory.length > 0) {
-  //         statCategoryAverage = parseFloat((adjustedAggregateOfStatCategory
-  //           .reduce((tot, val) => tot + val) / adjustedAggregateOfStatCategory.length).toFixed(1))
-  //       }
-
-  //       return statCategoryAverage
-
-  //     } else {
-  //       return 0.0
-  //     }
-  // }
-// }
-function adjustShotsBygP(shotsArray, gP){
-  let adjustedShotsArray
-  if (gP !== 0) {
-    shotsArray.length - gP >= 0
-      ? adjustedShotsArray = [...shotsArray.slice(shotsArray.length - gP)]
-      : adjustedShotsArray = [...shotsArray]
-  } else {
-    adjustedShotsArray = [...shotsArray]
-  }
-  return adjustedShotsArray
+//Builds array of each games stats based on the statCategory, and only counts
+//if the player played that game
+function aggregateStatsInArray(playerGames, statCategory) {
+  return playerGames.filter(game => parseInt(game.mins) > 0).map(game => parseFloat(game[statCategory]))
 }
 
+//Calculates stat average. Conditional guards against division by zero.
+function averageStatCalculator(statArray) {
+  if (statArray.length) {
+    return statArray.reduce((sum, val) => sum + val) / statArray.length
+  } else return 0.0
+}
+
+//Adjusts stats array to account for only most recent games based on gP modifier.
+function adjustStatsByGp(statsArray, gP) {
+  let adjustedStatsArray
+  if (gP !== 0) {
+    statsArray.length - gP >= 0
+      ? adjustedStatsArray = [...statsArray.slice(statsArray.length - gP)]
+      : adjustedStatsArray = [...statsArray]
+  } else {
+    adjustedStatsArray = [...statsArray]
+  }
+  return adjustedStatsArray
+}
+
+//Returns total number of games player has played.
 function gamesPlayed(playerGames) {
   let count = 0
   playerGames.forEach(game => { if (parseInt(game.mins) > 0) count++ })
