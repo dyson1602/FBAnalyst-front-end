@@ -34,6 +34,8 @@ export function computeAverage(player, gamesParameter = 0) {
   return playerAverages
 }
 
+
+
 function avgCaddy(playerGames, statCategory, gP) {
   if (playerGames.length > 0) {
     switch (statCategory) {
@@ -51,23 +53,9 @@ function avgCaddy(playerGames, statCategory, gP) {
 
         // adjust array conditionals to safeguard against User attempting to view more games
         // than the player has played; no negative slice
-        let adjustedShotsMadeArray
-        if (gP !== 0) {
-          shotsMadeArray.length - gP >= 0
-            ? adjustedShotsMadeArray = [...shotsMadeArray.slice(shotsMadeArray.length - gP)]
-            : adjustedShotsMadeArray = [...shotsMadeArray]
-        } else {
-          adjustedShotsMadeArray = [...shotsMadeArray]
-        }
-
-        let adjustedShotAttemptsArray
-        if (gP !== 0) {
-          shotAttemptsArray.length - gP >= 0
-            ? adjustedShotAttemptsArray = shotAttemptsArray.slice(shotAttemptsArray.length - gP)
-            : adjustedShotAttemptsArray = [...shotAttemptsArray]
-        } else {
-          adjustedShotAttemptsArray = [...shotAttemptsArray]
-        }
+        const adjustedShotsMadeArray = adjustShotsBygP(shotsMadeArray, gP)
+        const adjustedShotAttemptsArray = adjustShotsBygP(shotAttemptsArray, gP)
+        
 
         // conditionals guard against dividing by zero
         let averageShotsMade = 0.0
@@ -200,6 +188,17 @@ function avgCaddy(playerGames, statCategory, gP) {
   //     }
   // }
 // }
+function adjustShotsBygP(shotsArray, gP){
+  let adjustedShotsArray
+  if (gP !== 0) {
+    shotsArray.length - gP >= 0
+      ? adjustedShotsArray = [...shotsArray.slice(shotsArray.length - gP)]
+      : adjustedShotsArray = [...shotsArray]
+  } else {
+    adjustedShotsArray = [...shotsArray]
+  }
+  return adjustedShotsArray
+}
 
 function gamesPlayed(playerGames) {
   let count = 0
