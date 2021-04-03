@@ -4,7 +4,7 @@
 export function computeAverage(player, gamesParameter = 0) {
   const playerGames = player.player_games
   const gP = gamesParameter
- 
+
   const playerAverages = {
     name: player.name,
     nba_team_id: player.nba_team_id,
@@ -53,20 +53,23 @@ function avgCaddy(playerGames, statCategory, gP) {
         const adjustedAggregateOfStatCategory = adjustStatsByGp(aggregateOfStatCategory, gP)
         return parseFloat(averageStatCalculator(adjustedAggregateOfStatCategory).toFixed(1))
     }
-  } else return 0.0
+  } else {
+    return 0.0
+  }
 }
 
 //Builds array of each games stats based on the statCategory, and only counts
 //if the player played that game
 function aggregateStatsInArray(playerGames, statCategory) {
-  return playerGames.filter(game => parseInt(game.mins) > 0).map(game => parseFloat(game[statCategory]))
+  return playerGames
+    .filter(game => parseInt(game.mins) > 0)
+    .map(game => parseFloat(game[statCategory]))
 }
 
 //Calculates stat average. Conditional guards against division by zero.
 function averageStatCalculator(statArray) {
-  if (statArray.length) {
-    return statArray.reduce((sum, val) => sum + val) / statArray.length
-  } else return 0.0
+  if (!statArray.length) return 0.0
+  return statArray.reduce((sum, val) => sum + val) / statArray.length
 }
 
 //Adjusts stats array to account for only most recent games based on gP modifier.
@@ -84,7 +87,7 @@ function adjustStatsByGp(statsArray, gP) {
 
 //Returns total number of games player has played.
 function gamesPlayed(playerGames) {
-  let count = 0
-  playerGames.forEach(game => { if (parseInt(game.mins) > 0) count++ })
-  return count
+  return playerGames.reduce((count, game) => {
+    if (parseInt(game.mins) > 0) count += 1
+  }, 0)
 }
