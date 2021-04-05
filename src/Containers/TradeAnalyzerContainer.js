@@ -20,22 +20,22 @@ const TradeAnalyzerContainer = (props) => {
 
   return (
     <div className="my-container">
-      <Element >
+      <TradeAnalyzerStyledDiv >
         <CategorySelector />
-      </Element>
-      <Element>
+      </TradeAnalyzerStyledDiv>
+      <TradeAnalyzerStyledDiv>
         <TradeAnalyzerSelector />
-      </Element>
-      <Element>
+      </TradeAnalyzerStyledDiv>
+      <TradeAnalyzerStyledDiv>
         <div>
           <TradeResultChart />
         </div>
-      </Element>
+      </TradeAnalyzerStyledDiv>
     </div>
   )
 }
 
-const Element = styled.div`
+const TradeAnalyzerStyledDiv = styled.div`
   margin: 10px;
   display: flex;
   justify-content: center;
