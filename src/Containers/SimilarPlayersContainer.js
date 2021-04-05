@@ -1,9 +1,9 @@
-import SimilarPlayerChart from '../Components/similarPlayerChart'
+import SimilarPlayerRadarGraph from '../Components/SimilarPlayerRadarGraph'
 
 export default function SimilarPlayersContainer() {
   return (
       <div className="my-container">
-          <SimilarPlayerChart />
+          <SimilarPlayerRadarGraph />
       </div>
   )
 }

@@ -5,7 +5,7 @@ import { AutoComplete } from 'primereact/autocomplete'
 import styled from 'styled-components'
 
 
-const SimilarPlayerChart = () => {
+const SimilarPlayerRadarGraph = () => {
 
   const playerAverages = useSelector((state) => state.playerAverages)
 
@@ -158,4 +158,4 @@ const Card = styled.div`
   padding: 10px;
 `
 
-export default SimilarPlayerChart
+export default SimilarPlayerRadarGraph
