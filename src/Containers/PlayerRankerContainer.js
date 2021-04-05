@@ -6,17 +6,17 @@ function PlayerRankerContainer() {
 
   return (
     <div className="my-container">
-      <Element>
+      <PlayerRankerStyledDiv>
         <CategorySelector />
-      </Element>
-      <Element>
+      </PlayerRankerStyledDiv>
+      <PlayerRankerStyledDiv>
         <PlayerRankerChart />
-      </Element>
+      </PlayerRankerStyledDiv>
     </div>
   )
 }
 
-const Element = styled.div`
+const PlayerRankerStyledDiv = styled.div`
   display: flex;
   justify-content: center;
   margin: 10px;
