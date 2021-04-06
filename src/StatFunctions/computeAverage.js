@@ -4,7 +4,6 @@
 export function computeAverage(player, gamesParameter = 0) {
   const playerGames = player.player_games
   const gP = gamesParameter
-
   const playerAverages = {
     name: player.name,
     nba_team_id: player.nba_team_id,
@@ -87,7 +86,8 @@ function adjustStatsByGp(statsArray, gP) {
 
 //Returns total number of games player has played.
 function gamesPlayed(playerGames) {
-  return playerGames.reduce((count, game) => {
+  return playerGames.slice(0,20).reduce((count, game) => {
     if (parseInt(game.mins) > 0) count += 1
+    return count
   }, 0)
 }

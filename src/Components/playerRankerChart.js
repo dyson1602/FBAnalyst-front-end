@@ -19,7 +19,7 @@ function PlayerRankerChart() {
     if (categories) {
       const fantasyValues = computeFantasyValue(playerAverages, categories)
       const combinedValues = combineValues(playerAverages, fantasyValues)
-      
+      console.log("COMBINED VALUES:", combinedValues)
       const sortedCombinedValues = combinedValues.sort((a,b) => a.fNba_score - b.fNba_score )
 
       setCombinedValues(combinedValues)
