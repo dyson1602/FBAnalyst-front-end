@@ -96,6 +96,12 @@ pre {
   font-size: 12px;
   font-weight: bolder;
 }
+.fantasy-table-props {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bolder; 
+}
+
 .category-span{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
@@ -104,7 +110,6 @@ pre {
 }
 
 .selector-div {
-  display: flex;
   position: relative;
   margin: 10px;
 }
