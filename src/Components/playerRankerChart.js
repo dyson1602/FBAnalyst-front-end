@@ -44,31 +44,31 @@ function PlayerRankerChart() {
             paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10, 20, 50]}
             paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
-            <Column className="table-props" field="fNba_score" header="fNba" sortable ></Column>
-            <Column className="table-props" style={{width: "75px"}} field="name" header="Name" sortable></Column>
-            <Column className="table-props" field="position" header="Pos" sortable></Column>
-            <Column className="table-props" field="avg_mins" header="Mins" sortable></Column>
-            <Column className="table-props" field="avg_fga" header="FgA" sortable></Column>
-            <Column className="table-props" field="fgp" header="Fg%" sortable></Column>
-            <Column className="table-props" field="avg_fta" header="FtA" sortable></Column>
-            <Column className="table-props" field="ftp" header="Ft%" sortable></Column>
-            <Column className="table-props" field="avg_tpm" header="TPM" sortable></Column>
-            <Column className="table-props" field="avg_tot_reb" header="Reb" sortable></Column>
-            <Column className="table-props" field="avg_assists" header="Ast" sortable></Column>
-            <Column className="table-props" field="avg_steals" header="Stl" sortable></Column>
-            <Column className="table-props" field="avg_blocks" header="Blk" sortable></Column>
-            <Column className="table-props" field="avg_turnovers" header="TO" sortable></Column>
-            <Column className="table-props" field="avg_points" header="Pts" sortable></Column>              
-            <Column  field="fNba_ftp" header="fFt%" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_ftp" header="fFt%" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_fgp" header="fFg%" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_tpm" header="fTPM" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_assists" header="fAst" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_tot_reb" header="fReb" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_steals" header="fStl" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_blocks" header="fBlk" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_turnovers" header="fTO" sortable></Column>
-            <Column className="fantasy-table-props" field="fNba_points" header="fPts" sortable></Column>
+            <Column field="fNba_score" header="fNba" sortable ></Column>
+            <Column style={{width: "75px"}} field="name" header="Name" sortable></Column>
+            <Column field="position" header="Pos" sortable></Column>
+            <Column field="avg_mins" header="Mins" sortable></Column>
+            <Column field="avg_fga" header="FgA" sortable></Column>
+            <Column field="fgp" header="Fg%" sortable></Column>
+            <Column field="avg_fta" header="FtA" sortable></Column>
+            <Column field="ftp" header="Ft%" sortable></Column>
+            <Column field="avg_tpm" header="TPM" sortable></Column>
+            <Column field="avg_tot_reb" header="Reb" sortable></Column>
+            <Column field="avg_assists" header="Ast" sortable></Column>
+            <Column field="avg_steals" header="Stl" sortable></Column>
+            <Column field="avg_blocks" header="Blk" sortable></Column>
+            <Column field="avg_turnovers" header="TO" sortable></Column>
+            <Column field="avg_points" header="Pts" sortable></Column>              
+            <Column field="fNba_ftp" header="fFt%" sortable></Column>
+            <Column field="fNba_ftp" header="fFt%" sortable></Column>
+            <Column field="fNba_fgp" header="fFg%" sortable></Column>
+            <Column field="fNba_tpm" header="fTPM" sortable></Column>
+            <Column field="fNba_assists" header="fAst" sortable></Column>
+            <Column field="fNba_tot_reb" header="fReb" sortable></Column>
+            <Column field="fNba_steals" header="fStl" sortable></Column>
+            <Column field="fNba_blocks" header="fBlk" sortable></Column>
+            <Column field="fNba_turnovers" header="fTO" sortable></Column>
+            <Column field="fNba_points" header="fPts" sortable></Column>
           </StyledDataTable>
         </div>
       </div>
