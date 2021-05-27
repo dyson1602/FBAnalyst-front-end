@@ -34,8 +34,7 @@ const CategorySelector = (props) => {
 
   return (
     <>
-      <Card className="card">
-        <div className="selector-div">
+      <div className="selector-div">
           <span className="category-span">Select Catergories: </span>
           <Toggler checked={points} onChange={(e) => setPoints(e.value)} onLabel="Pts" offLabel="Pts" onIcon="pi pi-check" offIcon="pi pi-times" />
           <Toggler checked={assists} onChange={(e) => setAssists(e.value)} onLabel="Ast" offLabel="Ast" onIcon="pi pi-check" offIcon="pi pi-times" />
@@ -45,8 +44,7 @@ const CategorySelector = (props) => {
           <Toggler checked={fgp} onChange={(e) => setFgp(e.value)} onLabel="FG%" offLabel="FG%" onIcon="pi pi-check" offIcon="pi pi-times" />
           <Toggler checked={ftp} onChange={(e) => setFtp(e.value)} onLabel="FT%" offLabel="FT%" onIcon="pi pi-check" offIcon="pi pi-times" />
           <Toggler checked={tpoint} onChange={(e) => setTpoint(e.value)} onLabel="3Pt" offLabel="3Pt" onIcon="pi pi-check" offIcon="pi pi-times" />
-        </div>
-      </Card>
+      </div>
     </>
   )
 }

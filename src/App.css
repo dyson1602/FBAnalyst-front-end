@@ -104,8 +104,8 @@ pre {
 }
 
 .selector-div {
+  display: flex;
   position: relative;
-  height: 75px;
   margin: 10px;
 }
 

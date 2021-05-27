@@ -5,7 +5,7 @@ import styled from 'styled-components'
 function PlayerRankerContainer() {
 
   return (
-    <div className="my-container">
+    <div>
       <PlayerRankerStyledDiv>
         <CategorySelector />
       </PlayerRankerStyledDiv>
